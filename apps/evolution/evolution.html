@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<title>Evolution</title>
+<link rel="stylesheet" href="chartist.min.css">
+<meta charset="utf-8">
+<style>
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-87815122-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+
+<div id="mutationDiv">
+<table><tr style="vertical-align:top"><td id="protozoaPreviewDiv"></td><td><div id="adaptationDiv">Meet Zoe.<br><br>Zoe is a single-celled organism. She belongs to a group of 100 protozoa that live in a nearby river.<br><br>You're going to be in charge of Zoe's species as they begin to <b>evolve</b>.<br><br><a href="javascript:intro1()">Continue</a><!--<br><br><a href='javascript:intro7()'>Skip intro</a><br><br><a href="javascript:switchSpecies()">Skip protozoa</a>--></div><div id="yearPopDiv" class="ct-chart"></div></td></tr></table></div>
+<div id="gameDiv" style="display: none;"></div>
+
+<div id="birdMutationDiv" style="display:none">
+<table><tr style="vertical-align:top"><td id="birdPreviewDiv" style="display:none;"></td><td><div id="birdAdaptationDiv">After one billion years, Zoe's species has evolved <i>a lot</i>. They've left the sea and taken to the skies. Their population size has also multiplied by one hundred!<br><br><a href="javascript:birdIntro1()">Continue</a></div><div id="birdYearPopDiv" class="ct-chart"></div></td></tr></table></div>
+<div id="birdGameDiv" style="display:none"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="phaser.min.js"></script>
+<script src="HealthBar.standalone.js"></script>
+<script src="chartist.min.js"></script>
+<script src="jquery.csv.js"></script>
+<script src="evolution.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{"frames": [
+
+{
+	"filename": "beak1.png",
+	"frame": {"x":84,"y":1,"w":72,"h":97},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":72,"h":97},
+	"sourceSize": {"w":85,"h":97}
+},
+{
+	"filename": "beak2.png",
+	"frame": {"x":83,"y":100,"w":77,"h":92},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":5,"w":77,"h":92},
+	"sourceSize": {"w":85,"h":97}
+},
+{
+	"filename": "beak3.png",
+	"frame": {"x":1,"y":95,"w":80,"h":92},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":5,"w":80,"h":92},
+	"sourceSize": {"w":85,"h":97}
+},
+{
+	"filename": "beak4.png",
+	"frame": {"x":1,"y":1,"w":81,"h":92},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":5,"w":81,"h":92},
+	"sourceSize": {"w":85,"h":97}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "beak.png",
+	"format": "RGBA8888",
+	"size": {"w":161,"h":193},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:083876e81b8295e4e41cc1f22bd735fd:ee27521aa3925c4964762d945b65277d:99b38e11d8d332a03d8356ca00b2946c$"
+}
+}

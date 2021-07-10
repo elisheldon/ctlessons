@@ -1,0 +1,44 @@
+{"frames": [
+
+{
+	"filename": "ladybug01.png",
+	"frame": {"x":1,"y":71,"w":124,"h":54},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":17,"w":124,"h":54},
+	"sourceSize": {"w":141,"h":77}
+},
+{
+	"filename": "ladybug02.png",
+	"frame": {"x":1,"y":127,"w":130,"h":53},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":17,"w":130,"h":53},
+	"sourceSize": {"w":141,"h":77}
+},
+{
+	"filename": "ladybug03.png",
+	"frame": {"x":1,"y":182,"w":130,"h":53},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":17,"w":130,"h":53},
+	"sourceSize": {"w":141,"h":77}
+},
+{
+	"filename": "ladybug04.png",
+	"frame": {"x":1,"y":1,"w":125,"h":68},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":2,"w":125,"h":68},
+	"sourceSize": {"w":141,"h":77}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "ladybug.png",
+	"format": "RGBA8888",
+	"size": {"w":132,"h":236},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:0ff95cac39b2ebc4db2c2787f9428609:bc92dc7e4628e7a5e0d1df3813cba7e8:0e6e54af8de018a998cea968a5014cdb$"
+}
+}

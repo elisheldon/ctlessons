@@ -1,0 +1,31 @@
+adaptation,description,impact,change,condition,keep
+bWingSize,wing size increases a bit,stay up in the air more easily,0.2,<1.9,TRUE
+bWingSize,wing size increases significantly,stay up in the air much more easily,0.4,<1.7,TRUE
+bWingSize,wing size decreases a bit,stay up in the air less easily,-0.2,>.4,FALSE
+bTailSize,tail size increases a bit,fly forwards more easily,0.15,<1.4,TRUE
+bTailSize,tail size increases significantly,fly forwards much more easily,0.25,<1.3,TRUE
+bTailSize,tail size decreases a bit,fly forwards less easily,-0.15,>.6,FALSE
+bEyeSize,eye size increases a bit,see better at night,0.15,<1.4,TRUE
+bEyeSize,eye size increases significantly,see much better at night,0.25,<1.3,TRUE
+bEyeSize,eye size decreases a bit,see less well at night,-0.15,>.6,FALSE
+bBeakSize,beak size increases a bit,more easily catch ladybugs,0.3,<2.8,TRUE
+bBeakSize,beak size increases significantly,much more easily catch ladybugs,0.6,<2.5,TRUE
+bBeakSize,beak size decreases a bit,less easily catch ladybugs,-0.3,>.8,FALSE
+bBlueness,feathers become a bit more blue,hide from crows better,15,<86,TRUE
+bBlueness,feathers become significantly more blue,hide from crows much better,25,<76,TRUE
+bBlueness,feathers become a bit less blue,be more visible to crows,-15,>14,FALSE
+bWingSize,wing size increases a bit,stay up in the air more easily,0.2,<1.9,TRUE
+bWingSize,wing size increases significantly,stay up in the air much more easily,0.4,<1.7,TRUE
+bTailSize,tail size increases a bit,fly forwards more easily,0.15,<1.4,TRUE
+bTailSize,tail size increases significantly,fly forwards much more easily,0.25,<1.3,TRUE
+bEyeSize,eye size increases a bit,see better at night,0.15,<1.4,TRUE
+bEyeSize,eye size increases significantly,see much better at night,0.25,<1.3,TRUE
+bBeakSize,beak size increases a bit,more easily catch ladybugs,0.3,<2.8,TRUE
+bBeakSize,beak size increases significantly,much more easily catch ladybugs,0.6,<2.5,TRUE
+bBlueness,feathers become a bit more blue,hide from crows better,15,<86,TRUE
+bBlueness,feathers become significantly more blue,hide from crows much better,25,<76,TRUE
+bWingSize,wing size increases a bit,stay up in the air more easily,0.2,<1.9,TRUE
+bTailSize,tail size increases a bit,fly forwards more easily,0.15,<1.4,TRUE
+bEyeSize,eye size increases a bit,see better at night,0.15,<1.4,TRUE
+bBeakSize,beak size increases a bit,more easily catch ladybugs,0.3,<2.8,TRUE
+bBlueness,feathers become a bit more blue,hide from crows better,15,<86,TRUE

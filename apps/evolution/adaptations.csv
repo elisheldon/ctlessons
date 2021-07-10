@@ -1,0 +1,25 @@
+adaptation,description,impact,change,condition,keep
+pTailLength,tail length increases a bit,move faster,0.1,<1,TRUE
+pTailLength,tail length increases signficantly,move a lot faster,0.2,<.9,TRUE
+pTailLength,tail length decreases a bit,move slower,-0.1,>.1,FALSE
+pMitochondriaSize,mitochondria size increases a bit,have more energy,0.1,<1,TRUE
+pMitochondriaSize,mitochondria size increases significantly,have a lot more energy,0.2,<.9,TRUE
+pMitochondriaSize,mitochondria size decreases a bit,have less energy,-0.1,>.3,FALSE
+pMouthNumber,mouth size increases,more easily eat food,1,<4,TRUE
+pMouthNumber,mouth size decreases,less easily eat food,-1,>1,FALSE
+pCiliaNum,cilia grows more dense,turn faster,1,<3,TRUE
+pCiliaNum,cilia grows less dense,turn slower,-1,>1,FALSE
+pWallThickness,cell wall grows thicker,have better protection against parasites,1,<8,TRUE
+pWallThickness,cell wall grows thinner,have less protection against parasites,-1,>1,FALSE
+pTailLength,tail length increases a bit,move faster,0.1,<1,TRUE
+pTailLength,tail length increases signficantly,move a lot faster,0.2,<.9,TRUE
+pMitochondriaSize,mitochondria size increases a bit,have more energy,0.1,<1,TRUE
+pMitochondriaSize,mitochondria size increases significantly,have a lot more energy,0.2,<.9,TRUE
+pMouthNumber,mouth size increases,more easily eat food,1,<4,TRUE
+pCiliaNum,cilia grows more dense,turn faster,1,<3,TRUE
+pWallThickness,cell wall grows thicker,have better protection against parasites,1,<8,TRUE
+pTailLength,tail length increases a bit,move faster,0.1,<1,TRUE
+pMitochondriaSize,mitochondria size increases a bit,have more energy,0.1,<1,TRUE
+pMouthNumber,mouth size increases,more easily eat food,1,<4,TRUE
+pCiliaNum,cilia grows more dense,turn faster,1,<3,TRUE
+pWallThickness,cell wall grows thicker,have better protection against parasites,1,<8,TRUE

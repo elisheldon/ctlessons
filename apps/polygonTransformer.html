@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Polygon Transformer</title>
+<STYLE>
+			body{font-family: Arial; font-size: 12pt;}
+            TD{font-family: Arial; font-size: 12pt;}
+            BUTTON{font-family: Arial; font-size: 12pt;}
+			textarea{font-family: Arial; font-size: 12pt;}
+			select{font-family: Arial; font-size: 12pt;}
+			input[type="number"] {width:50px; font-family: Arial; font-size: 12pt}
+			input[type="number"]::-webkit-outer-spin-button,
+			input[type="number"]::-webkit-inner-spin-button {-webkit-appearance: none;margin: 0;}
+			input[type="number"] {-moz-appearance: textfield;}
+</STYLE>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-87815122-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+
+<body align="left">
+<table width="100%" border="0">
+  <tbody>
+    <tr valign="top">
+      <td>
+      Vertices: <br>
+        <textarea style="resize:none" id="pairsInput" rows="6" cols="10"></textarea><br>
+		<button id="drawp0Button">Draw</button><br><br>
+		<button id="clearButton">Clear</button><br><br>
+        Zoom: <input id="zoomRange" type="range" name="Zoom" min="0" max="2" style="width: 60px"><br><br>
+		<button id="showValuesButton" style="width:120px">Show coordinate<br>values</button><br><br>
+		<button id="undoButton" style="width:120px">Undo transformation</button><br>
+      </td>
+      <td>
+      	<canvas id="coordinatePlane" width="1200" height="500" style="border:0px"></canvas><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table width="1366" border="0">
+  <tbody>
+    <tr valign="middle" align="center">
+	  <td width="530" valign="middle" align="left">
+		<button id="translateButton">Translate</button>
+		X: <input type="number" id="translateX"></input>
+		Y: <input type="number" id="translateY"></input><br><br>
+		<button id="reflectXButton">Reflect over x = </button>
+		<input type="number" id="reflectX"></input>
+		<button id="reflectYButton">Reflect over y = </button>
+		<input type="number" id="reflectY"></input><br>
+		<button id="reflectYAxisButton">Reflect over y axis </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button id="reflectXAxisButton">Reflect over x axis </button><br><br>
+		<button id="rotateButton">Rotate</button>
+			<input type="radio" name="degrees" value="90" checked> 90
+			<input type="radio" name="degrees" value="180"> 180
+			<input type="radio" name="degrees" value="270"> 270 deg
+			<input type="radio" name="direction" value="CW" checked> CW
+			<input type="radio" name="direction" value="CCW"> CCW<br><br>
+		<button id="dilateButton">Dilate</button> with scale factor 
+		<input type="number" id="scale"></input><br>
+	  </td>
+	  <td width="200"><font color="#FF0000">
+	  <div id="p0list"></div>
+	  <div id="p0name"></div>
+	  </td>
+	  <td width="80"><font color="#FF0000">
+	  <div id="transform1"></div>
+	  </td>
+	  <td width="200"><font color="#008000">
+	  <div id="p1list"></div>
+	  <div id="p1name"></div>
+	  </td>
+	  <td width="80"><font color="#008000">
+	  <div id="transform2"></div>
+	  </td>
+	  <td width="200"><font color="#0000FF">
+	  <div id="p2list"></div>
+	  <div id="p2name"></div>
+	  </td>
+	  <td width="80"><font color="#0000FF">
+	  <div id="transform3"></div>
+	  </td>
+	  <td width="200"><font color="#FF00FF">
+	  <div id="p3list"></div>
+	  <div id="p3name"></div>
+	  </td>
+	</tr>
+   </tbody>
+</table>
+<div align="center"><font color="orange"><div id="status"></div></div>
+<script src="polygonTransformer.js"></script>
+</body>
+</html>

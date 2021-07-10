@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+<title>Weather Balloon</title>
+<meta charset="utf-8">
+<style>
+video::cue {
+  background-color: transparent
+}
+body{font-family: Arial, Helvetica, sans-serif}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-87815122-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+
+<body>
+<div id="welcomeHeader">
+	<h1>Welcome to the Weather Balloon Data Analyzer!</h1>
+</div>
+<div id="signInDiv">
+	To begin, please sign in with your Google account below. This allows us to share your score. <br><br>
+	<input type="image" id="googleSignIn" src="images/btn_google_signin_dark_normal_web.png" /> <br><br>
+</div>
+
+<div id="classCodeCreateDiv" style="display: none;">
+	Let's create a classroom code for your class! <br><br>
+	<button id="classCodeCreateBtn">Generate a class code</button> <button id="cancelClassCodeCreate">Cancel</button><br><br>
+</div>
+
+<div id="classCodeCreate2Div" style="display: none">
+	<div id="classCodeCreate2TextDiv"></div><br>
+	<button id="startAfterClassCodeCreate">Play</button> <button id="createAnotherClassCode">Create another class code</button>
+</div>
+
+<div id="classCodeDiv" style="display: none;">
+	Welcome <span id="welcomeName"></span>! Please enter your classroom code. This should be provided by your teacher.<br><br>
+	Clasroom code: <input type="text" id="classCodeIn" maxlength="6" size="8">
+	<button id="classCodeInBtn" style="margin:0;display:inline">Submit</button><br><br>
+	<div id="classCodeConfirmDiv" style="display: none;"></div>
+	<br><br>
+	If you are a teacher and need to create a classroom code, click <a href="javascript:$('#classCodeDiv').hide();$('#classCodeCreateDiv').show();">here</a>.
+</div>
+
+<div id="introDiv" style="display: none;">
+	<table border="0"><tr><td style="padding-right: 40px"><h1>On April 25th, 2017...</h1>students at Excel Public Charter School launched a high-altitude weather balloon into space. The balloon was carrying a payload (in this case, a styrofoam box) with a GoPro camera, a GPS tracker and sensors to capture key data throughout the flight.<br><br>In this activity, you will analyze that data using pattern recognition and skills you've learned in math class. You can also watch footage from the flight - click on any point on the graphs to jump to that point in time in the video!<br><br>Answer each question carefully, thinking first about which graph you need to use. Your scores are being tracked and shared - who will come out on top?<br><br>
+	<button id='classCodeContinueBtn'>Let's play!</button></td><td><img src="images/balloon.jpg" height="600px"></td></tr></table>
+</div>
+
+<div id="main" style="display:none;">
+<table border="0">
+	<tr>
+		<td>
+			<table border="0">
+				<tr>
+					<td style="width: 200px; vertical-align: top">
+						<h3 style="display:inline">Graph:</h3><br><br>
+						<input type="radio" name="seriesSelect" onclick="seriesSelectChange()" value="altitudeF" checked> Altitude<br>
+						<input type="radio" name="seriesSelect" onclick="seriesSelectChange()" value="latitude"> Latitude<br>
+						<input type="radio" name="seriesSelect" onclick="seriesSelectChange()" value="longitude"> Longitude<br>
+						<input type="radio" name="seriesSelect" onclick="seriesSelectChange()" value="distanceNSFt"> Distance north/south<br>
+						<input type="radio" name="seriesSelect" onclick="seriesSelectChange()" value="distanceEWFt"> Distance east/west<br>
+						<input type="radio" name="seriesSelect" onclick="seriesSelectChange()" value="distanceFt"> Total ground distance<br>
+						<input type="radio" name="seriesSelect" onclick="seriesSelectChange()" value="speedMph"> Ground speed<br><br>
+						Click on any point on the graph to jump to that time in the flight video below!
+					</td>
+					<td>
+						<canvas id="chartCanvas" height="300px" width="740px"></canvas>
+					</td>
+					<td style="width: 260px; vertical-align: top; padding-left: 20px;">
+						<h3 style="display:inline">Scores:</h3><br><br>
+						<div id="scoresTable" style="overflow: auto; height:260px">
+						</div>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table>
+				<tr>
+					<td>
+						<video id="flightVideo" width="536" height="300" autoplay>
+							<source src="flight.mp4" type="video/mp4">
+							<track src="times.vtt" kind="captions" default>
+						</video>
+					</td>
+					<td id="questionArea" style="text-align: left; vertical-align: top; width: 664px; padding-left: 40px">
+						<h2 id="questionHeader" style="display:inline">Question #1</h2><br>
+						<div id="questionText"></div><br>
+						<input type="radio" name="answers" value="a"><span id="answerA"> A)</span><br>
+						<input type="radio" name="answers" value="b"><span id="answerB"> B)</span><br>
+						<input type="radio" name="answers" value="c"><span id="answerC"> C)</span><br>
+						<input type="radio" name="answers" value="d"><span id="answerD"> D)</span><br><br>
+						<button id="answerSubmit">Submit</button><br><br>
+						<div id="questionResult">&nbsp;</div><br>
+						<button id="nextQuestion" disabled>Next question</button><br><br>
+						<div id="questionsCorrect">Questions correct: 0</div>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</div>
+<div id="subHtml"></div>
+
+<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="jquery.csv.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
+<script src="balloon.js"></script>
+</body>
+</html>

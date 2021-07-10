@@ -1,0 +1,441 @@
+<!doctype html>
+<html>
+<head>
+<title>Excel Kickball</title>
+<meta charset="utf-8">
+<style>
+body{font-family: Arial, Helvetica, sans-serif; font-weight: bold;}
+p {margin: 0; padding: 0;}
+tr.availablePlayerRowTeamOne:hover {background-color: #5e87e5;}
+tr.availablePlayerRowTeamTwo:hover {background-color: #ffca2d;}
+tr.athleteRow:hover, tr.presentPlayerRow:hover, tr.staffRow:hover{background-color: #E8E8E8;}
+table {border-collapse: collapse;}
+th, td{padding: 5px;}
+button{
+	background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+	font-weight: bold;
+    cursor: pointer;
+}
+button:hover:enabled{
+    background-color: #3e8e41;
+}
+button:disabled{
+	opacity: .3;
+}
+.kickButton{width:180px}
+#kickUpRight{margin-bottom: 3px;}
+
+select {
+   -webkit-appearance: button;
+   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+   -webkit-padding-end: 20px;
+   -webkit-padding-start: 2px;
+   -webkit-user-select: none;
+   background-image: url("arrow.png");
+   background-color: #4CAF50;
+   background-position: 97% center;
+   background-repeat: no-repeat;
+   border: 0px;
+   color: #fff;
+   font-size: inherit;
+   font-weight: bold;
+   overflow: hidden;
+   padding: 5px 10px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   width: 200px;
+}
+
+#ump{
+	position:absolute;
+	z-index:100;
+	left:40%;
+	top:50px;
+}
+
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-87815122-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+<body>
+
+<div id="launchNav" style="display: none;text-align: center">
+	Period: <select id="periodSelect">
+		<option disabled selected value>&nbsp;</option>
+		<option value="2">2nd</option>
+		<option value="3">3rd</option>
+		<option value="4">4th</option>
+		<option value="5">5th</option>
+		<option value="7">7th</option>
+	</select><br><br>
+	<button id="newGameBtn" disabled>Start a new game</button>
+	<button id="athletesBtn" disabled>Athlete profiles</button>
+</div>
+
+<div id="loadingDiv" style="text-align: center"><h1 style="text-align: center">Loading...</h1><img src="loading.gif" height="300px"></img></div>
+
+<div id="absentUI" style="display:none;text-align: center">
+	<h1>Click on players that are absent to remove them</h1>
+	<table border="0" style='margin-left:auto; margin-right:auto;'>
+		<tr>
+			<td style="vertical-align:top">
+				<table id="presentPlayerTable" border="1" style='margin-left:auto; margin-right:auto;'>
+					<tbody>
+						<tr style='background-color: #C0C0C0'>
+							<th>Available players</th>
+						</tr>
+					</tbody>
+				</table><br><br>
+			</td>
+			<td>
+				<table id="staffTable" border="1" style='display:none; margin-left:auto; margin-right:auto;'>
+					<tbody>
+						<tr style='background-color: #C0C0C0'>
+							<th>Staff</th>
+						</tr>
+					</tbody>
+				</table><br><br>
+			</td>
+		</tr>
+	</table>
+	<button id="draftTeamsBtn">Continue to draft teams</button>
+	<button id="addStaffBtn">Add a staff member</button>
+	<button id="addNewPlayer">Add a new player</button>
+	<button id="absentAgainBtn">Start over</button>
+	<div id="newPlayerDiv" style="display: none;">
+		<br>First name: <input type="text" id="newPlayerFirst" maxlength="30">
+		<br><br>Last initial: <input type="text" id="newPlayerLast" maxlength="1">
+		<br><br>Period: <input type="number" id="newPlayerPeriod" min="0" max="8"> Enter 0 for staff members!
+		<br><br>Number: <input type="number" id="newPlayerNumber" min="1" max="999">
+		<br><br>Arm: <select id="newPlayerArm" name="newPlayerArm">
+			<option selected value="Right">Right</option>
+			<option value="Left">Left</option>
+			</select>
+		<br><br>Foot: <select id="newPlayerFoot" name="newPlayerFoot">
+			<option selected value="Right">Right</option>
+			<option value="Left">Left</option>
+			</select>
+		<br><br><button id="submitNewPlayer">Submit new player</button>
+	</div>
+</div>
+
+<div id="teamsUI" style="display: none;">
+	<div style="text-align: center;" id="selectTeams">
+		<h1 id="teamTurn" style='text-align: center'></h1>
+
+		<table id="teamOneTable" border="1" style='margin-left:auto; margin-right:auto; width:560px'>
+		<tbody>
+			<tr style='background-color: #5e87e5'>
+				<th id='teamOneHeader' style="width:80px">Team One</th>
+				<th>Throws</th>
+				<th>Kicks</th>
+				<th>OBP</th>
+				<th>SLG</th>
+				<th>R</th>
+				<th>RA</th>
+				<th style="width:150px">Usually kicks</th>
+			</tr>
+		</tbody>
+		</table><br>
+
+		<table id="teamTwoTable" border="1" style='margin-left:auto; margin-right:auto; width:560px'>
+		<tbody>
+			<tr style='background-color: #ffca2d'>
+				<th id='teamTwoHeader' style="width:80px">Team Two</th>
+				<th>Throws</th>
+				<th>Kicks</th>
+				<th>OBP</th>
+				<th>SLG</th>
+				<th>R</th>
+				<th>RA</th>
+				<th style="width:150px">Usually kicks</th>
+			</tr>
+		</tbody>
+		</table><br>
+
+		<table id="availableTable" border="1" style='margin-left:auto; margin-right:auto; width:560px'>
+			<tr style='background-color: #DCDCDC'>
+				<th id='availableHeader' style="width:80px">Available</th>
+				<th>Throws</th>
+				<th>Kicks</th>
+				<th>OBP</th>
+				<th>SLG</th>
+				<th>R</th>
+				<th>RA</th>
+				<th style="width:150px">Usually kicks</th>
+			</tr>
+		</table>
+		<br>
+		<button id="showTeamsWithNames" >Show teams with names</button>
+	</div>
+	
+	<div id="teamsWithNames" style="display: none;text-align: center">
+		<h1>Get into your teams!</h1>
+		<table border="0" style='margin-left:auto; margin-right:auto;'>
+			<tr>
+				<td style='vertical-align:top;'>
+					<table id="teamOneTableWithNames" border="1" style='margin-left:auto; margin-right:auto;'>
+					<tbody>
+						<tr style='background-color: #5e87e5'>
+							<th>Team One</th>
+							<th>Throws</th>
+							<th>Kicks</th>
+							<th>OBP</th>
+							<th>SLG</th>
+							<th>R</th>
+							<th>RA</th>
+							<th>Usually kicks</th>
+						</tr>
+					</tbody>
+					</table>
+				</td>
+				<td style='vertical-align:top;'>
+					<table id="teamTwoTableWithNames" border="1" style='margin-left:auto; margin-right:auto;'>
+					<tbody>
+						<tr style='background-color: #ffca2d'>
+							<th>Team Two</th>
+							<th>Throws</th>
+							<th>Kicks</th>
+							<th>OBP</th>
+							<th>SLG</th>
+							<th>R</th>
+							<th>RA</th>
+							<th>Usually kicks</th>
+						</tr>
+					</tbody>
+					</table>
+				</td>
+			</tr>
+		</table><br>
+		<button id="startGame">Start game</button>
+	</div>
+</div>
+
+<div id="athletesDiv" style="display: none;text-align:center">
+	<h1 id="athletesPeriod"></h1>
+	<p id="athletesText">Click on an athlete to see their detailed stats</p><br>
+	<table id="athleteTable" border="1" style='margin-left:auto; margin-right:auto;'>
+		<tr style='background-color: #C0C0C0'>
+			<th id='athleteHeader'>Athlete</th>
+			<th>Throws</th>
+			<th>Kicks</th>
+			<th>OBP</th>
+			<th>SLG</th>
+			<th>R</th>
+			<th>RA</th>
+			<th>Usually kicks</th>
+		</tr>
+	</table><br>
+	<button class="homeBtn">Home</button>
+</div>
+
+<div id="athletePage" style="display: none; text-align:center">
+	<h1 id="athleteName"></h1>
+	<h3 id="athleteDir"></h3>
+	<table style='margin-left:auto; margin-right:auto;'>
+		<tr>
+			<td>
+				<table border="1">
+					<tr>
+						<th colspan="2" style="background-color: #5e87e5;">Kicking</th>
+					</tr>
+					<tr>
+						<td>At-bats</td>
+						<td id="apab"></td>
+					</tr>
+					<tr>
+						<td>Singles</td>
+						<td id="apb1"></td>
+					</tr>
+					<tr>
+						<td>Doubles</td>
+						<td id="apb2"></td>
+					</tr>
+					<tr>
+						<td>Triples</td>
+						<td id="apb3"></td>
+					</tr>
+					<tr>
+						<td>Home runs</td>
+						<td id="aphr"></td>
+					</tr>
+					<tr>
+						<td>Runs</td>
+						<td id="apruns"></td>
+					</tr>
+					<tr>
+						<td>Walks</td>
+						<td id="apwalks"></td>
+					</tr>
+					<tr>
+						<td>OBP</td>
+						<td id="apobp"></td>
+					</tr>
+					<tr>
+						<td>SLG</td>
+						<td id="apslg"></td>
+					</tr>
+				</table>
+			</td>
+			<td style='vertical-align:top;'>
+				<table border="1">
+					<tr>
+						<th colspan="2" style="background-color: #ffca2d;">Pitching</th>
+					</tr>
+					<tr>
+						<td>Innings pitched</td>
+						<td id="apip"></td>
+					</tr>
+					<tr>
+						<td>Runs allowed</td>
+						<td id="aper"></td>
+					</tr>
+					<tr>
+						<td>Run average</td>
+						<td id="apera"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br>
+	<button id="backToAthletesBtn" style="display:none;">Back</button>
+	<button class="homeBtn">Home</button>
+</div>
+
+<div id="gameUI" style="display:none;">
+	<div id="ump" style="display:none;">
+		<img src="ump.png" height="600px"></img>
+	</div>
+	<table>
+		<tr>
+			<td style='vertical-align:top;padding-right:30px'>
+				<table style="font-size: 24px;font-weight: bold;">
+					<tr>
+						<td id="t1Score" style="background-color: #5e87e5;text-align:right">TEAM ONE &nbsp;&nbsp; 0</td>
+					</tr>
+					<tr>
+						<td id="t2Score" style="background-color: #ffca2d;">TEAM TWO &nbsp;&nbsp; 0</td>
+					</tr>
+					<tr>
+						<td id="gameStats" style="text-align:center">
+							<div id="topInning" style="display: inline">
+								<img src="arrow_up.gif" style="display: inline" height="15px"></img>
+							</div>
+							<div id="bottomInning" style="display:inline;">
+								<img src="arrow_down.gif" height="15px"></img>
+							</div>
+							<p id="inningNum" style="display: inline">1ST</p>
+							<div id="outCount">
+								0 OUTS
+							</div>
+							<br><img id="advancedMenuImg" src="gear.png" height="20px"></img><br>
+							<div id="advancedMenu" style="display:none;font-size: 14px;font-weight: normal;">
+								<br>
+								Team One Runs&nbsp;&nbsp;<img src="plus.gif" style="vertical-align:middle" id="t1RunsPlus" height="14px">&nbsp;&nbsp;<img src="minus.gif" style="vertical-align:middle" id="t1RunsMinus" height="14px"><br><br>
+								Team Two Runs&nbsp;&nbsp;<img src="plus.gif" style="vertical-align:middle" id="t2RunsPlus" height="14px">&nbsp;&nbsp;<img src="minus.gif" style="vertical-align:middle" id="t2RunsMinus" height="14px"><br><br>
+								Outs&nbsp;&nbsp;<img src="plus.gif" style="vertical-align:middle" id="outsPlus" height="14px">&nbsp;&nbsp;<img src="minus.gif" style="vertical-align:middle" id="outsMinus" height="14px"><br><br>
+								Inning&nbsp;&nbsp;<img src="plus.gif" style="vertical-align:middle" id="inningPlus" height="14px">&nbsp;&nbsp;<img src="minus.gif" style="vertical-align:middle" id="inningMinus" height="14px"><br><br>
+								<button id="endGameBtn">End game</button>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td style='vertical-align:top;'>
+				Who is kicking?
+				<select id="kickSelect">
+					<option disabled selected value="empty">&nbsp;</option>
+				</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				Who is pitching?
+				<select id="pitchSelect">
+					<option disabled selected value="empty">&nbsp;</option>
+				</select><br><br>
+				What happened this play?<br>
+				<button class="playButton" id="playSingle">Single</button>
+				<button class="playButton" id="playDouble">Double</button>
+				<button class="playButton" id="playTriple">Triple</button>
+				<button class="playButton" id="playHomeRun">Home Run</button>
+				<button class="playButton" id="playWalk">Walk</button>
+				<button class="playButton" id="playOut">Kicker Out</button><br><br>
+				<div id="kickPlacement">
+					Where was the ball kicked?<br>
+					<button class="kickButton" id="kickUpLeft">Up and left</button>
+					<button class="kickButton" id="kickUpMid">Up and center</button>
+					<button class="kickButton" id="kickUpRight">Up and right</button><br>
+					<button class="kickButton" id="kickDownLeft">Down and left</button>
+					<button class="kickButton" id="kickDownMid">Down and center</button>
+					<button class="kickButton" id="kickDownRight">Down and right</button><br><br>
+				</div>
+				<table>
+					<tr>
+						<td style='vertical-align:top;'>
+							How many runs were scored?<br>
+							<button class="runButton" id="runZero">0</button>
+							<button class="runButton" id="runOne">1</button>
+							<button class="runButton" id="runTwo">2</button>
+							<button class="runButton" id="runThree">3</button>
+							<button class="runButton" id="runFour">4</button><br><br>
+							How many outs were made in total?<br>
+							<button class="outButton" id="outZero">0</button>
+							<button class="outButton" id="outOne">1</button>
+							<button class="outButton" id="outTwo">2</button>
+							<button class="outButton" id="outThree">3</button>
+							<br><br><button id="nextPlayBtn">Next play</button><br><br>
+							<p id="nextPlayError" style="color:red;"></p>
+						</td>
+						<td style='vertical-align:top;padding-left:40px'>
+							<div id="runOneDiv" style="display:none;">
+								Who scored?<br>
+								<select id="runOneSelect">
+									<option disabled selected value="empty">&nbsp;</option>
+								</select>
+							</div>
+							<div id="runTwoDiv" style="display:none;">
+								<br><select id="runTwoSelect">
+									<option disabled selected value="empty">&nbsp;</option>
+								</select>
+							</div>
+							<div id="runThreeDiv" style="display:none;">
+								<br><select id="runThreeSelect">
+									<option disabled selected value="empty">&nbsp;</option>
+								</select>
+							</div>
+							<div id="runFourDiv" style="display:none;">
+								<br><select id="runFourSelect">
+									<option disabled selected value="empty">&nbsp;</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-firestore.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
+<script src="jquery.csv.js"></script>
+<script src="jquery.fireworks.js"></script>
+<script src="kickball.js"></script>
+</body>
+</html>

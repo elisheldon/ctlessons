@@ -1,0 +1,44 @@
+{"frames": [
+
+{
+	"filename": "parasite1.png",
+	"frame": {"x":1,"y":1,"w":253,"h":246},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":5,"w":253,"h":246},
+	"sourceSize": {"w":256,"h":256}
+},
+{
+	"filename": "parasite2.png",
+	"frame": {"x":1,"y":249,"w":252,"h":236},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":12,"w":252,"h":236},
+	"sourceSize": {"w":256,"h":256}
+},
+{
+	"filename": "parasite3.png",
+	"frame": {"x":256,"y":243,"w":236,"h":239},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":11,"y":10,"w":236,"h":239},
+	"sourceSize": {"w":256,"h":256}
+},
+{
+	"filename": "parasite4.png",
+	"frame": {"x":256,"y":1,"w":239,"h":240},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":14,"y":11,"w":239,"h":240},
+	"sourceSize": {"w":256,"h":256}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "parasite.png",
+	"format": "RGBA8888",
+	"size": {"w":496,"h":486},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:0f45c39ae40cf702b6a71824e6f8d08c:4949d050c7fc4f5963ffab9da6bb2934:d5ab08c2386057f31e2e1435de1180bc$"
+}
+}

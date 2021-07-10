@@ -1,0 +1,60 @@
+{"frames": [
+
+{
+	"filename": "enemy.png",
+	"frame": {"x":101,"y":61,"w":13,"h":14},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":13,"h":14},
+	"sourceSize": {"w":13,"h":14}
+},
+{
+	"filename": "flag.png",
+	"frame": {"x":67,"y":61,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
+},
+{
+	"filename": "hut1.png",
+	"frame": {"x":1,"y":67,"w":64,"h":63},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":1,"w":64,"h":63},
+	"sourceSize": {"w":64,"h":64}
+},
+{
+	"filename": "hut2.png",
+	"frame": {"x":1,"y":1,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64}
+},
+{
+	"filename": "hut3.png",
+	"frame": {"x":67,"y":1,"w":58,"h":58},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":3,"w":58,"h":58},
+	"sourceSize": {"w":64,"h":64}
+},
+{
+	"filename": "warrior.png",
+	"frame": {"x":101,"y":77,"w":13,"h":14},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":13,"h":14},
+	"sourceSize": {"w":13,"h":14}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "warImages.png",
+	"format": "RGBA8888",
+	"size": {"w":126,"h":131},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:0c6c28933cb588c448849236505dfcb6:28fded38039601c7d0770ed26966d6e3:dad9e950b475ec012b6dc3def9e46f06$"
+}
+}

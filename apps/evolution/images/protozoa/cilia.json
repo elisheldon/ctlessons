@@ -1,0 +1,132 @@
+{"frames": [
+
+{
+	"filename": "cilia_few_0.png",
+	"frame": {"x":479,"y":1586,"w":237,"h":364},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":5,"y":10,"w":237,"h":364},
+	"sourceSize": {"w":251,"h":451}
+},
+{
+	"filename": "cilia_few_1.png",
+	"frame": {"x":486,"y":1218,"w":244,"h":366},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":6,"w":244,"h":366},
+	"sourceSize": {"w":251,"h":451}
+},
+{
+	"filename": "cilia_few_2.png",
+	"frame": {"x":1,"y":1586,"w":243,"h":357},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":6,"w":243,"h":357},
+	"sourceSize": {"w":251,"h":451}
+},
+{
+	"filename": "cilia_few_3.png",
+	"frame": {"x":1,"y":1222,"w":240,"h":350},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":5,"y":7,"w":240,"h":350},
+	"sourceSize": {"w":251,"h":451}
+},
+{
+	"filename": "cilia_few_4.png",
+	"frame": {"x":246,"y":1608,"w":231,"h":342},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":13,"w":231,"h":342},
+	"sourceSize": {"w":251,"h":451}
+},
+{
+	"filename": "cilia_many_0.png",
+	"frame": {"x":493,"y":1,"w":237,"h":413},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":5,"y":10,"w":237,"h":413},
+	"sourceSize": {"w":251,"h":451}
+},
+{
+	"filename": "cilia_many_1.png",
+	"frame": {"x":1,"y":1,"w":244,"h":414},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":6,"w":244,"h":414},
+	"sourceSize": {"w":251,"h":451}
+},
+{
+	"filename": "cilia_many_2.png",
+	"frame": {"x":1,"y":417,"w":243,"h":406},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":6,"w":243,"h":406},
+	"sourceSize": {"w":251,"h":451}
+},
+{
+	"filename": "cilia_many_3.png",
+	"frame": {"x":1,"y":825,"w":241,"h":395},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":7,"w":241,"h":395},
+	"sourceSize": {"w":251,"h":451}
+},
+{
+	"filename": "cilia_many_4.png",
+	"frame": {"x":486,"y":831,"w":235,"h":385},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":6,"y":12,"w":235,"h":385},
+	"sourceSize": {"w":251,"h":451}
+},
+{
+	"filename": "cilia_some_0.png",
+	"frame": {"x":493,"y":416,"w":237,"h":413},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":5,"y":10,"w":237,"h":413},
+	"sourceSize": {"w":251,"h":451}
+},
+{
+	"filename": "cilia_some_1.png",
+	"frame": {"x":247,"y":1,"w":244,"h":414},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":6,"w":244,"h":414},
+	"sourceSize": {"w":251,"h":451}
+},
+{
+	"filename": "cilia_some_2.png",
+	"frame": {"x":246,"y":417,"w":243,"h":406},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":6,"w":243,"h":406},
+	"sourceSize": {"w":251,"h":451}
+},
+{
+	"filename": "cilia_some_3.png",
+	"frame": {"x":244,"y":825,"w":240,"h":395},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":5,"y":7,"w":240,"h":395},
+	"sourceSize": {"w":251,"h":451}
+},
+{
+	"filename": "cilia_some_4.png",
+	"frame": {"x":246,"y":1222,"w":231,"h":384},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":13,"w":231,"h":384},
+	"sourceSize": {"w":251,"h":451}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "cilia.png",
+	"format": "RGBA8888",
+	"size": {"w":731,"h":1951},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:99308d81d34bb2924befede9f4f89ec7:b0ae9b846864ec8d697afcf6052e2ccd:592512e398a2b7d0c242949bf3f05c42$"
+}
+}

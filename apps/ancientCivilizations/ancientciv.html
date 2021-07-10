@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+<head>
+<title>Ancient Civilizations</title>
+<meta charset="utf-8">
+<style>
+h2,h3 {
+	padding: 0px 0px 0px 0px; margin: 10px 0px 0px 0px;
+}
+p {
+	padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;
+}
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+.centeredButton{
+	margin:auto;
+	display:block;
+}
+html *{
+	font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif !important;
+}
+#eventCal tr {height: 50px;}
+#eventCal td {text-align: center; width:100px;}
+.eventMonth:hover {background-color: #ddd;}
+.eventMonthClicked {background-color: #ddd;}
+.eventMonthDisabled {background-color: #fff;}
+canvas {   display : block;   margin : auto;}
+</style>
+<script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-87815122-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+
+<body onresize="drawResizedNav()" >
+
+<div id="signInDiv">
+<h1>Welcome to Ancient Civilizations!</h1>
+To begin, please sign in with your Google account below. This allows us to save and load your game data. <br><br>
+<input type="image" id="googleSignIn" src="images/btn_google_signin_dark_normal_web.png" /> <br><br>
+If the above button does not work, you are likely using an unsupported browser. Please visit this page in Chrome, Firefox, Safari, Edge or Opera to play!
+</div>
+
+<div id="classCodeCreateDiv" style="display: none;">
+Let's create a classroom code for your class! <br><br>
+Enter a name for your classroom: <input type="text" id="classCodeCreateNameIn" maxlength="30">
+<button id="classCodeCreateNameBtn">Generate a class code</button><br><br>
+<p id="classCodeCreate2Div"></p><br>
+<button id="startAfterClassCodeCreate">Start a civilization</button><button id="createAnotherClassCode">Create another class code</button>
+</div>
+
+<div id="classCodeDiv" style="display: none;">
+If you have a classroom code, enter it now. This should be provided by your teacher.<br><br>
+Clasroom code: <input type="text" id="classCodeIn" maxlength="6" size="8">
+<button id="classCodeInBtn" style="margin:0;display:inline">Submit</button><br><br>
+<div id="classCodeConfirmDiv" style="display: none;">
+</div>
+If you do not have a classroom code, you will not be able to trade with your classmates! <a href="javascript:$('#classCodeDiv').hide();$('#civCreation1').show();db.ref('users/'+user.uid).update({classcode: 'none'});">Play without a classroom code</a>.<br><br>
+If you are a teacher and need to create a classroom code, click <a href="javascript:$('#classCodeDiv').hide();$('#classCodeCreateDiv').show();generateClassCode();">here</a>.
+</div>
+
+<div id="civCreation1" style="display: none;">
+It's time to start creating your new civilization! Your goal is to grow your population to 100,000 civilians as quickly as you can.<br><br>
+First of all, your civilization is going to need a name.<br><br>
+Civilization name: <input type="text" id="civNameIn" maxlength="20" size="24">
+<button id="civNameInBtn">Continue</button>
+</div>
+
+<div id="civCreation2" style="display: none;">
+Where is your civilization located?<br><br>
+<input type="radio" name="civLocationIn" value="ocean"> next to an ocean <img src='images/locations/ocean.gif' height='16'><br>
+<input type="radio" name="civLocationIn" value="mountains"> in the mountains <img src='images/locations/mountains.gif' height='16'><br>
+<input type="radio" name="civLocationIn" value="island"> on an island <img src='images/locations/island.gif' height='16'><br>
+<input type="radio" name="civLocationIn" value="rainforest"> in the rainforest <img src='images/locations/rainforest.gif' height='16'><br>
+<input type="radio" name="civLocationIn" value="river"> next to a river <img src='images/locations/river.gif' height='16'><br>
+<input type="radio" name="civLocationIn" value="desert"> in the desert <img src='images/locations/desert.gif' height='16'><br><br>
+<button id="civLocationInBtn">Continue</button>
+</div>
+
+<div id="civCreation3" style="display: none;">
+Now it's time to decide what resources your civilization will begin with. Throughout this game, you may earn or lose some resources. If you entered a classroom code, you'll also be able to trade resources with your classmates. <br><br>
+We're going to start you out with 20 Resource Points to spend on animals, 20 Resource Points to spend on plants, and 10 Resource Points to spend on materials. <br><br>
+Below are the animals your civilization can begin with. You can spend all 20 Resource Points on one animal, or distribute those points across as many animals as you'd like.<br><br>
+<input type="number" id="camelsIn" min="0" max="20" onchange="recalcAnimalRP('camels')"> camels <img src='images/resources/camels.gif' height='16'><br><br>
+<input type="number" id="catsIn" min="0" max="20" onchange="recalcAnimalRP('cats')"> cats <img src='images/resources/cats.gif' height='16'><br><br>
+<input type="number" id="chickensIn" min="0" max="20" onchange="recalcAnimalRP('chickens')"> chickens <img src='images/resources/chickens.gif' height='16'><br><br>
+<input type="number" id="cowsIn" min="0" max="20" onchange="recalcAnimalRP('cows')"> cows <img src='images/resources/cows.gif' height='16'><br><br>
+<input type="number" id="dogsIn" min="0" max="20" onchange="recalcAnimalRP('dogs')"> dogs <img src='images/resources/dogs.gif' height='16'><br><br>
+<input type="number" id="fishIn" min="0" max="20" onchange="recalcAnimalRP('fish')"> fish <img src='images/resources/fish.gif' height='16'><br><br>
+<input type="number" id="horsesIn" min="0" max="20" onchange="recalcAnimalRP('horses')"> horses <img src='images/resources/horses.gif' height='16'><br><br>
+<input type="number" id="llamasIn" min="0" max="20" onchange="recalcAnimalRP('llamas')"> llamas <img src='images/resources/llamas.gif' height='16'><br><br>
+<p id="animalRP">Resource Points remaining: 20</p><br>
+<button id="civAnimalsInBtn">Continue</button>
+</div>
+
+<div id="civCreation4" style="display: none;">
+Great choices with those animals. Below are the plants your civilization can begin with. You can spend all 20 Resource Points on one plant, or distribute those points across as many plants as you'd like.<br><br>
+<input type="number" id="beansIn" min="0" max="20" onchange="recalcPlantRP('beans')"> beans <img src='images/resources/beans.gif' height='16'><br><br>
+<input type="number" id="cornIn" min="0" max="20" onchange="recalcPlantRP('corn')"> corn <img src='images/resources/corn.gif' height='16'><br><br>
+<input type="number" id="orangesIn" min="0" max="20" onchange="recalcPlantRP('oranges')"> oranges <img src='images/resources/oranges.gif' height='16'><br><br>
+<input type="number" id="pinetreesIn" min="0" max="20" onchange="recalcPlantRP('pinetrees')"> pine trees <img src='images/resources/pine trees.gif' height='16'><br><br>
+<input type="number" id="potatoesIn" min="0" max="20" onchange="recalcPlantRP('potatoes')"> potatoes <img src='images/resources/potatoes.gif' height='16'><br><br>
+<input type="number" id="rosesIn" min="0" max="20" onchange="recalcPlantRP('roses')"> roses <img src='images/resources/roses.gif' height='16'><br><br>
+<input type="number" id="wheatIn" min="0" max="20" onchange="recalcPlantRP('wheat')"> wheat <img src='images/resources/wheat.gif' height='16'><br><br>
+<p id="plantRP">Resource Points remaining: 20</p><br>
+<button id="civPlantsInBtn">Continue</button>
+</div>
+
+<div id="civCreation5" style="display: none;">
+Excellent plant choices. Below are the materials your civilization can begin with. You can spend all 10 Resource Points on one material, or distribute those points across as many materials as you'd like.<br><br>
+<input type="number" id="bronzeIn" min="0" max="10" onchange="recalcMaterialRP('bronze')"> bronze <img src='images/resources/bronze.gif' height='16'><br><br>
+<input type="number" id="goldIn" min="0" max="10" onchange="recalcMaterialRP('gold')"> gold <img src='images/resources/gold.gif' height='16'><br><br>
+<input type="number" id="ironIn" min="0" max="10" onchange="recalcMaterialRP('iron')"> iron <img src='images/resources/iron.gif' height='16'><br><br>
+<input type="number" id="silkIn" min="0" max="10" onchange="recalcMaterialRP('silk')"> silk <img src='images/resources/silk.gif' height='16'><br><br>
+<input type="number" id="stoneIn" min="0" max="10" onchange="recalcMaterialRP('stone')"> stone <img src='images/resources/stone.gif' height='16'><br><br>
+<p id="materialRP">Resource Points remaining: 10</p><br>
+You've finished creating your civilization - let's start the game with some resource bonuses! <br><br><button id="civMaterialsInBtn">Begin game</button>
+</div>
+
+<div id="gameUI" style="display: none; width:100%">
+<table style="width:100%;border:0px"><tr>
+<td style="vertical-align:top;">
+
+<div id="yearNav">
+<canvas id="yearNavCanvas" height="30" style="border:0px"></canvas>
+</div>
+
+<div id="resourceBonuses" style="display: none;">
+<table style="width:100%"><tr><td id="foodBonusCalc" style="vertical-align:top;width:76%"></td><td id="foodBonusReference" style="vertical-align:top;; padding-right: 10px"></td></tr></table></div>
+
+<div id="trade" style="display: none;">
+<div id="tradeClassmates">
+<p id="tradeClassmatesInstructions">Select a classmate to trade with! You can only have one active trade proposal per classmate.</p><br>
+<table style='margin-left:auto; margin-right:auto;'><tr><td style="vertical-align:top"><img src="images/arrow_left.png" id="tradeLeftArrow" height="32px" style="margin-top: 30px"></td><td id="classmateToTrade" style="width:400px;text-align:center"></td><td style="vertical-align:top"><img src="images/arrow_right.png" id="tradeRightArrow" height="32px" style="margin-top: 30px"></td></tr></table>
+<button id="tradeWithBtn" style="display: block; margin: 0 auto;">Trade with</button>
+</div>
+<div id="noClassmates"></div>
+<div id="tradeOffer" style="display: none;">
+Create your offer by clicking on resources to trade from your classmate's civilization and from your own civilization. Once you submit your trade request, your classmate will get a notification to review and either accept or reject your offer.<br><br>
+<table border="1" style='margin-left:0; margin-right:0;'><tr><th id='classmateCivHasHeader' style='width:20%'></th><th id='classmateCivGivesHeader' style='width:10%'></th><th style='width:10%'></th><th id='playerCivGivesHeader' style='width:10%'></th><th id='playerCivHasHeader' style='width:20%'></th></tr><tr><td id='classmateCivHas' style="vertical-align:top;"></td><td id='classmateCivGives' style="vertical-align:top;"></td><td><button id="proposeTradeBtn" style="display: block; margin: 0 auto;">Propose trade</button><br><br><button id="cancelTradeBtn" style="display: block; margin: 0 auto;">Cancel trade</button></td><td id='playerCivGives' style="vertical-align:top;"></td><td id='playerCivHas' style="vertical-align:top;"></td></tr></table>
+</div>
+</div>
+
+<div id="reviewTrades" style="display: none;">
+<p id="tradesOut"></p><br>
+<p id="tradesIn"></p>
+</div>
+
+<div id="plague" style="display: none;">
+<table border="0"><tr><td><img src='images/plague.jpg' height='200'></td><td id=plagueText></td></tr></table>
+</div>
+
+<div id="events" style="display: none;">
+<p>This year, like most years in your civilization, many random events happen. Depending on your location and your resources, each event may or may not apply to you. Each of the months below has one event - choose three months to uncover by clicking on them:</p>
+<table border="0"><tr style="vertical-align:top"><td style="width:300px;text-align:center"><p id="eventCalYear"></p><table border="1" id="eventCal"><tr><td id="eventCal1" class="eventMonth">January</td><td id="eventCal2" class="eventMonth">February</td><td id="eventCal3" class="eventMonth">March</td></tr><tr><td id="eventCal4" class="eventMonth">April</td><td id="eventCal5" class="eventMonth">May</td><td id="eventCal6" class="eventMonth">June</td></tr><tr><td id="eventCal7" class="eventMonth">July</td><td id="eventCal8" class="eventMonth">August</td><td id="eventCal9" class="eventMonth">September</td></tr><tr><td id="eventCal10" class="eventMonth">October</td><td id="eventCal11" class="eventMonth">November</td><td id="eventCal12" class="eventMonth">December</td></tr></table></td><td id="eventlist" style="vertical-align:top;padding-left:20px;"></td></tr></table>
+</div>
+
+<div id="war" style="display: none;">
+<table style="width:100%" id="warTable"><tr><td id="warInstructions" style="vertical-align:top;width:50%"></td><td id="warBonusReference" style="vertical-align:top; padding-right: 10px"></td></tr></table>
+<p id="warText"></p>
+<p id="warGame"></p>
+</div>
+
+<div id="yearEnd" style="display: none;">
+<p id="yearEndText"></p><br>
+If you'd like to delete your civilization and start the game from scratch, click <a style="color:red" onClick="deleteCivConfirm(); return false;">Delete</a>.
+</div>
+
+<div id="navButtons" style="border-top: 1px solid black; padding-top: 10px; margin-top: 10px"></div>
+<button id="nextStageBtn" style="margin:auto;display:block">Continue</button>
+</td>
+<td id="rightUI" style="vertical-align:top; border-left: 1px solid black; padding-left: 5px; width:25%"><h2 id="ruiCivName"></h2><p id="ruiYear"></p><p id="ruiPop"></p><h3>Animals</h3><p id="ruiAnimals"></p><h3>Plants</h3><p id="ruiPlants"></p><h3>Materials</h3><p id="ruiMaterials"></p></td>
+</tr></table>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="phaser.min.js"></script>
+<script src="jquery.csv.js"></script>
+<script src="ancientciv.js"></script>
+</body>
+</html>

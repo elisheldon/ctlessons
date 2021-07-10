@@ -1,0 +1,21 @@
+num,q,a,b,c,d,correct
+1,How long did the flight last in total?,"Two hours, four minutes","Six hours, twenty-three minutes","Two hours, fifty-six minutes","Three hours, four minutes",c
+2,"What does the flat part of the ""total ground distance"" graph from  5:11pm-5:46pm represent?",The balloon is not moving at all,The balloon is only moving up,The balloon is only moving down,The balloon is only moving up and down,d
+3,What does the slope of the distance north/south graph represent?,The speed of the balloon rising or falling,The speed of the balloon moving north or south,The total speed of the balloon,The curvature of the earth as the balloon travels north or south,b
+4,"In the first fourteen minutes, the slope of the distance east/west graph is nearly zero. What does this mean?",The wind was blowing mostly east,The wind was blowing mostly west,The wind was blowing mostly north or south,The balloon had not yet been launched,c
+5,What conclusion can you draw by comparing the distance north/south and the distance east/west graphs?,The balloon traveled further east/west than it did north/south,The wind was blowing more east/west than north/south,"The balloon encountered winds blowing north, south, east <i>and</i> west",All of the above,d
+6,"After the balloon pops, the slope of the altitude graph becomes more shallow over time. Why?",The balloon slows down because gravity changes closer to the earth,The balloon slows down because there is more air resistance on the parachute closer to the earth,"The balloon slows down because parts of the balloon are falling off, reducing the weight of the balloon",The balloon slows down because it is getting further away from the launch point,b
+7,What is the highest altitude that the balloon reached?,"82,000 ft","112,000 ft","62,000 ft",606 ft,b
+8,At what time did the balloon start falling?,5:04pm,3:57pm,4:15pm,5:41pm,d
+9,What was the fastest ground speed the balloon reached?,112 mph,99 mph,120mph,72 mph,a
+10,At what time did the balloon's distance north/south reach zero again (x-intercept)?,4:15pm,4:05pm,6:14pm,3:48pm,a
+11,What is the balloon's longitude at 4:39pm?,-122&#176;,-121.2&#176;,-121&#176;,-122.18&#176;,b
+12,What is the maximum east or west distance the balloon reaches from the launch point?,78.745 mi,56.506 mi,32.791 mi,84.949 mi,a
+13,"The balloon travels fastest in the jet stream, which it encounters both while rising and while falling. At what time range does the balloon first fly in the jet stream?",4:05pm-4:38pm,3:39pm-3:56pm,5:45pm-6:19pm,4:35pm-4:37pm,a
+14,"What is the average vertical speed of the balloon rising? (Hint: find the slope for the ""rising"" part of the altitude graph) ",633 ft/min,112 ft/min,832 ft/min,521 ft/min,c
+15,"At 4:28pm, what was the ground distance of the balloon from the launch point?",12.4 mi,30 mi,40 mi,6 mi,c
+16,How fast does the balloon fall between 5:42pm and 5:45pm? (Hint: calculate the slope from the altitude graph) ,"36,530 ft/min","8,611 ft/min","14,382 ft/min","2,301 ft/min",b
+17,At what time did the balloon first reach a distance of fifty miles away from the launch point?,4:43pm,5:12pm,4:46pm,The balloon was never fifty miles away from the launch point,a
+18,What was the highest latitude the balloon reached?,46.95433&#176;,-120.52383&#176;,47.50217&#176;,47.4905&#176;,c
+19,What is the maximum north or south distance the balloon traveled from the launch point?,5.055 mi,78.745 mi,31.869 mi,32.791 mi,d
+20,Most airplanes travel at about 550 mph. At what time was the balloon first traveling faster than most airplanes?,4:14pm,3:42pm,5:58pm,The balloon never traveled faster than most airplanes,d

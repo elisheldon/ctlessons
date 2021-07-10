@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+<head>
+<title>Scramble for Africa</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="tt/css/tooltipster.bundle.min.css" />
+<link rel="stylesheet" type="text/css" href="tt/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-light.min.css" />
+<style>
+#mapTable tr {height: 36px;}
+#mapTable td {width:36px;}
+#mapTableTutorial tr {height: 36px;}
+#mapTableTutorial td {width:36px;}
+.africaMapSquare {position: relative;vertical-align:middle;text-align:center}
+.tooltip:hover {outline:3px solid black;}
+.africaMapSquarePic {display: block; position: absolute; z-index:1; top: 0px}
+.africaMapResourcePic {display: block; position: absolute; z-index:2; top:9px; left: 9px}
+.claimable{background-image: url('images/fade2.gif');}
+.button {
+    text-align: center;
+	border: 1px solid black;
+	padding: 3px 3px;
+    display: inline-block;
+}
+body{font-family: Arial, Helvetica, sans-serif}
+
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-87815122-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+<div id="introDivs">
+<div id="welcome">
+	<h1>The Scramble for Africa</h1>
+	Welcome to the Scramble for Africa! You will take on the role of a European country ready to colonize the continent of Africa. Your goal is to claim as much land and as many resources as possible, though your specific objectives will vary.
+	<div id="enterWorldCode" style="display: none;">
+		<br>Enter your world code: <input type="text" id="worldCodeIn" maxlength="6" size="8">
+		<button class="button" id="worldCodeInBtn" style="margin:0;display:inline">Submit</button><br>
+		<div id="worldCodeError" style="display: none; color: red;">This world code is invalid - please try again.</div>
+		<div id="newWorldCode"><br>Or, if you need to create a new world code to set up a new game:
+		<button class="button" id="createWorldCode" style="margin:0;display:inline" onclick="generateWorldCode()">Create world code</button><br></div>
+	</div>
+	<div id="createdWorldCode" style="display: none;"></div>
+	<div id="numberOfTeams" style="display: none;">
+		<br>How many teams will participate in this world? Ideally, you should have all seven teams.<br><br>
+		<select id="numberOfTeamsSelect">
+			<option value="1">1 - Britain</option>
+			<option value="2">2 - Britain and France</option>
+			<option value="3">3 - Britain, France and Belgium</option>
+			<option value="4">4 - Britain, France, Belgium and Spain</option>
+			<option value="5">5 - Britain, France, Belgium, Spain and Germany</option>
+			<option value="6">6 - Britain, France, Belgium, Spain, Germany and Italy</option>
+			<option value="7" selected="selected">7 - Britain, France, Belgium, Spain, Germany, Italy and Portugal</option>
+		</select>
+		<button class="button" id="numberOfTeamsBtn">Submit</button>
+	</div>
+</div>
+<br><div id="selectTeam" style="display: none;">
+		Select your country: 
+		<select id="teamSelect">
+			<option value="1">Britain</option>
+			<option value="2">France</option>
+			<option value="3">Belgium</option>
+			<option value="4">Spain</option>
+			<option value="5">Germany</option>
+			<option value="6">Italy</option>
+			<option value="7">Portugal</option>
+		</select>
+		<button class="button" id="teamSelectBtn" style="margin:0;display:inline">Submit</button><br>
+</div>
+<div id="loadingDiv" style="display: none;"><br><img src="images/loading.gif" width="24px"> <h2 style="display:inline">Loading...</h2></div>
+</div>
+<div id="tutorialDiv" style="display: none;">
+<h1>The Scramble for Africa</h1>
+	<table id="tutorial1">
+		<tr>
+			<td id="africaMapTableTutorial"></td>
+			<td style="padding-left:20px">
+				Before we jump into the game, you need to know how it works! To the left you can see Madagascar broken into a grid. In the full game, each team will take turns claiming squares of Africa. Which squares you can claim are based on what year it is, what country you are and where your other squares are. Once a square is claimed, it belongs to that country forever. Squares that you can claim will glow.
+				<br><br>Move your cursor over some of the squares. Any square with land will show you its climate, its resources and which country it belongs to. To continue, <b>claim the two glowing squares to the left.<b>
+			</td>
+		</tr>
+	</table>
+	<table id="tutorial2" style="display: none;">
+		<tr>
+			<td>
+				You can change how map squares are colored and which information is displayed by using the options beneath the map. To the right of the map, you'll see the year and whose turn it is up at the top. You have a limited amount of time each turn, so make sure you're ready with a decision! <br><br>
+				Below that, you'll see your objectives (which will change over time!) and what you can do on your turn, followed by recent activity and the current scores. Highest score at the end of Year 1895 is the winner!<br><br>
+				Once you're ready to begin, click the button below - and good luck!<br><br>
+				<div style="text-align:center;margin: 0 auto;"><button class="button" onclick="endTutorial()">Begin the Scramble for Africa</button></div>
+			</td>
+			<td>
+				<img src="images/tutorialScreenshot.png" height="400px"></img>
+			</td>
+		</tr>
+	</table>
+</div>
+<table id="mainGame" border="0" style="display: none;">
+	<tr>
+		<td>
+			<div id="africaMapTable"></div>
+			<div id="mapOptions" style="text-align: center; width:600px; margin-top: 10px">
+				Color squares by <select id="colorBy" onchange="toggleColor()">
+					<option value="claim">claim</option>
+					<option value="climate">climate</option>
+				</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="checkbox" id="cbShowResources" checked onchange="toggleResources()">Show resources</input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="checkbox" id="cbShowNumbers" onchange="toggleNumbers()">Show square numbers</input>
+			</div>
+		</td>
+		<td valign="top" style="padding-left: 30px;">
+			<table id="rightUI" border="0" cellspacing="0"  style="width:600px; height:610px">
+				<tr>
+					<td id="uiTop">
+						<h2 style="display:inline; margin-bottom:0px;">
+							<span id="year"></span>
+							<span id="turn"></span><br>
+						</h2>
+						<span id="teacherUI" style="display:none;">
+							<br><br><button id="teacherPause" class="button" onclick="pauseBtn()">Pause game</button>
+							<button id="teacherResume" class="button" onclick="resumeBtn()" style="display:none;">Resume game</button>
+							<button id="skipTurn" class="button" onclick="skipTurn()">Skip the current team's turn</button>
+						</span>
+					</td>
+				</tr>
+				<tr valign="top">
+					<td id="uiTop2">
+						<h3><div id="objectiveHeader" style="display:inline"></div></h3>
+						<div id="teamObjective"></div>
+						<h3><div id="turnHeader" style="display:inline"></div><span id="turnsLeft"></span></h3>
+						<div id="thisTurn"></div>
+					</td>
+				</tr>
+				<tr valign="top">
+					<td>
+						<table cellspacing="0" cellpadding="0" border="0">
+							<tr>
+								<td style="width:150px; vertical-align:top">
+									<h3>Scores</h3>
+									<div id="scoresDiv"></div>
+								</td>
+								<td style="width:400px; vertical-align:top">
+									<h3>Turn History</h3>
+									<div id="turnHistoryDiv"></div>
+									</td>
+							</tr>
+						</table>	
+					</td>
+				</tr>
+				<tr valign="bottom">
+					<td>
+						<h3>Legend</h3>
+						<div id="legendDiv"></div>
+					</td>
+				</tr>
+			</table>
+			<div id="endGameDiv" style="display: none;">
+				<h1>The Scramble for Africa is over!</h1>
+				<h2>Final Scores</h2>
+				<div id="finalScoresDiv"></div>
+				<br><button class="button" onclick="showRealAfrica()">Click here to compare your map against a real historical map after the scramble</button>
+				<br><div id="finalLegendDiv">
+					<h3>Legend</h3>
+				</div>
+			</div>
+			<div id="realAfrica" style="display: none;">
+				<img src="images/realFinalAfrica.png" style="height:570px;"></img>
+			</div>
+		</td>
+	</tr>
+</table>
+
+<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="jquery.csv.js"></script>
+<script src="tt/js/tooltipster.bundle.min.js"></script>
+<script src="scramble.js"></script>
+</body>
+</html>
