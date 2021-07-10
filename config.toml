@@ -1,3 +1,4 @@
-baseURL = "http://example.org/"
+baseURL = "http://ctlessons.org/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Computational Thinking Lessons"
+theme = "toha"
