@@ -1,32 +1,85 @@
 <!doctype html>
-<html>
+
+<html lang="en">
+
 <head>
-<meta charset="utf-8">
-<title>Polygon Transformer</title>
-<STYLE>
-			body{font-family: Arial; font-size: 12pt;}
-            TD{font-family: Arial; font-size: 12pt;}
-            BUTTON{font-family: Arial; font-size: 12pt;}
-			textarea{font-family: Arial; font-size: 12pt;}
-			select{font-family: Arial; font-size: 12pt;}
-			input[type="number"] {width:50px; font-family: Arial; font-size: 12pt}
-			input[type="number"]::-webkit-outer-spin-button,
-			input[type="number"]::-webkit-inner-spin-button {-webkit-appearance: none;margin: 0;}
-			input[type="number"] {-moz-appearance: textfield;}
-</STYLE>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  ga('create', 'UA-87815122-1', 'auto');
-  ga('send', 'pageview');
+    <title>Polygon Transformer</title>
+    <meta name="description" content="Web app powering Polygon Transformations lesson">
+    <meta name="author" content="Eli Sheldon">
 
-</script>
+    <meta property="og:title" content="Computational Thinking Lessons">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ctlessons.org/apps/polygonTransformer.html">
+    <meta property="og:description" content="Web app powering Polygon Transformations lesson">
+    <meta property="og:image" content="../images/polygon_transformer.png">
+
+    <link rel="icon" href="/favicon.ico">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.0.2/dist/litera/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-NM0WRN8VNF"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-NM0WRN8VNF');
+	</script>
+
+	<STYLE>
+		body{font-family: Arial; font-size: 12pt;}
+		TD{font-family: Arial; font-size: 12pt;}
+		BUTTON{font-family: Arial; font-size: 12pt;}
+		textarea{font-family: Arial; font-size: 12pt;}
+		select{font-family: Arial; font-size: 12pt;}
+		input[type="number"] {width:50px; font-family: Arial; font-size: 12pt}
+		input[type="number"]::-webkit-outer-spin-button,
+		input[type="number"]::-webkit-inner-spin-button {-webkit-appearance: none;margin: 0;}
+		input[type="number"] {-moz-appearance: textfield;}
+	</STYLE>
+
+    <script data-ad-client="ca-pub-2264946088428596" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
 </head>
 
-<body align="left">
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="../index.html">Computational Thinking Lessons</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Math</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="../math/basketball-motion-analysis.html">Basketball Motion Analysis</a></li>
+                <li><a class="dropdown-item" href="../math/polygon-transformations.html">Polygon Transformations</a></li>
+                <li><a class="dropdown-item" href="../math/racial-bias-in-traffic-stops.html">Racial Bias in Traffic Stops</a></li>
+                <li><a class="dropdown-item" href="../math/rational-football-league.html">Rational Football League</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Apps</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="../apps/polygonTransformer.html">Polygon Transformer</a></li>
+                <li><a class="dropdown-item" href="../apps/rationalFootballLeague.html">Rational Football League</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <br>
+
+    <div class="container">
+
+        <body align="left">
 <table width="100%" border="0">
   <tbody>
     <tr valign="top">
@@ -64,7 +117,7 @@
 			<input type="radio" name="degrees" value="270"> 270 deg
 			<input type="radio" name="direction" value="CW" checked> CW
 			<input type="radio" name="direction" value="CCW"> CCW<br><br>
-		<button id="dilateButton">Dilate</button> with scale factor 
+		<button id="dilateButton">Dilate</button> with scale factor
 		<input type="number" id="scale"></input><br>
 	  </td>
 	  <td width="200"><font color="#FF0000">
@@ -98,4 +151,10 @@
 <div align="center"><font color="orange"><div id="status"></div></div>
 <script src="polygonTransformer.js"></script>
 </body>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+
 </html>
