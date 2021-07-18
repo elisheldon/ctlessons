@@ -135,10 +135,10 @@ function drawFace(){
 	var eyelashLength = document.querySelector('input[name="eyelashLength"]:checked').value;
 	var eyeX = 200;
 	var eyeY = 250;
-	
+
 	ctx.clearRect(0, 0, c.width, c.height);
 	ectx.clearRect(0, 0, c.width, c.height);
-	
+
 	drawHead(faceShape,faceColor);
 	drawChin(faceColor,chinDimple,chinShape);
 	if(freckles == "true"){drawFreckles(faceColor);}
@@ -218,77 +218,77 @@ function drawEyes(eyeShape,eyeColor,eyeSize,eyeX,eyeY){
 			eyeRadius = 30;
 			break;
 	}
-	
+
 	//left eye white
 	ctx.beginPath();
 	if(eyeShape == "round"){ctx.arc(200,250,eyeRadius,0,2*Math.PI);}
 	else{ctx.ellipse(200,250,eyeRadius,eyeRadius*.6,0,0,2*Math.PI);}
 	ctx.fillStyle="white";
 	ctx.fill();
-	
+
 	//right eye white
 	ctx.beginPath();
 	if(eyeShape == "round"){ctx.arc(300,250,eyeRadius,0,2*Math.PI);}
 	else{ctx.ellipse(300,250,eyeRadius,eyeRadius*.6,0,0,2*Math.PI);}
 	ctx.fillStyle="white";
 	ctx.fill();
-	
+
 	//left eye color
 	ctx.beginPath();
 	ctx.arc(eyeX,eyeY,11,0,2*Math.PI);
 	ctx.fillStyle=eyeColor;
 	ctx.fill();
-	
+
 	//right eye color
 	ctx.beginPath();
 	ctx.arc(eyeX+100,eyeY,11,0,2*Math.PI);
 	ctx.fillStyle=eyeColor;
 	ctx.fill();
-	
+
 	//left eye pupil
 	ctx.beginPath();
 	ctx.arc(eyeX,eyeY,5,0,2*Math.PI);
 	ctx.fillStyle="black";
 	ctx.fill();
-	
+
 	//right eye pupil
 	ctx.beginPath();
 	ctx.arc(eyeX+100,eyeY,5,0,2*Math.PI);
 	ctx.fillStyle="black";
 	ctx.fill();
-	
+
 	movingEyeShape = eyeShape;
 	movingEyeColor = eyeColor;
 	movingEyeSize = eyeSize;
 	ectx.restore(); //remove clipping, in case old eyes were smaller than new
 	ectx.save(); //need to put a save back in the stack
 	clipMovingEyes(movingEyeShape,movingEyeSize);
-	document.onmousemove = moveEyes;	
-	
+	document.onmousemove = moveEyes;
+
 }
 
 function drawMovingEyes(eyeColor,eyeX,eyeY){
 	ectx.fillStyle = "white";
 	ectx.fillRect(0,0, ec.width, ec.height);
-	
+
 	//left eye color
 	ectx.beginPath();
 	ectx.arc(eyeX,eyeY,11,0,2*Math.PI);
 	ectx.fillStyle=eyeColor;
 	ectx.fill();
-	
+
 	//right eye color
 	ectx.beginPath();
 	ectx.arc(eyeX+100,eyeY,11,0,2*Math.PI);
 	ectx.fillStyle=eyeColor;
 	ectx.fill();
-	
+
 	//left eye pupil
 	ectx.beginPath();
 	ectx.arc(eyeX,eyeY,5,0,2*Math.PI);
 	ectx.fillStyle="black";
 	ectx.fill();
-	
+
 	//right eye pupil
 	ectx.beginPath();
 	ectx.arc(eyeX+100,eyeY,5,0,2*Math.PI);
@@ -308,12 +308,12 @@ function clipMovingEyes(eyeShape,eyeSize){
 			eyeRadius = 30;
 			break;
 	}
-	
+
 	//left eye white
 	ectx.beginPath();
 	if(eyeShape == "round"){ectx.arc(200,250,eyeRadius,0,2*Math.PI);}
 	else{ectx.ellipse(200,250,eyeRadius,eyeRadius*.6,0,0,2*Math.PI);}
-	
+
 	//right eye white
 	if(eyeShape == "round"){ectx.arc(300,250,eyeRadius,0,2*Math.PI);}
 	else{ectx.ellipse(300,250,eyeRadius,eyeRadius*.6,0,0,2*Math.PI);}
@@ -387,7 +387,7 @@ function drawMouth(mouthSize){
 			ctx.fill();
 			break;
 	}
-	
+
 	ctx.beginPath();
 	//ctx.stroke();
 }
@@ -589,14 +589,14 @@ function drawEyebrows(eyebrows, hairColor,eyeShape,eyeSize,eyebrowColor){
 		ctx.beginPath();
 		ctx.moveTo(160,eyebrowY);
 		for(i=1;i<72;i=i+4){
-			ctx.quadraticCurveTo(160+i,Math.sqrt((eyebrowY-20)*(eyebrowY-20)+2*(41-i)*(41-i)),161+i,Math.sqrt((eyebrowY-10)*(eyebrowY-10)+2*(41-i)*(41-i))); // 
+			ctx.quadraticCurveTo(160+i,Math.sqrt((eyebrowY-20)*(eyebrowY-20)+2*(41-i)*(41-i)),161+i,Math.sqrt((eyebrowY-10)*(eyebrowY-10)+2*(41-i)*(41-i))); //
 			ctx.quadraticCurveTo(162+i,Math.sqrt(eyebrowY*eyebrowY+2*(41-i)*(41-i)),163+i,Math.sqrt((eyebrowY-10)*(eyebrowY-10)+2*(41-i)*(41-i)));
 		}
 		ctx.stroke();
 		ctx.beginPath();
 		ctx.moveTo(340,eyebrowY);
 		for(i=1;i<72;i=i+4){
-			ctx.quadraticCurveTo(340-i,Math.sqrt((eyebrowY-20)*(eyebrowY-20)+2*(41-i)*(41-i)),339-i,Math.sqrt((eyebrowY-10)*(eyebrowY-10)+2*(41-i)*(41-i))); // 
+			ctx.quadraticCurveTo(340-i,Math.sqrt((eyebrowY-20)*(eyebrowY-20)+2*(41-i)*(41-i)),339-i,Math.sqrt((eyebrowY-10)*(eyebrowY-10)+2*(41-i)*(41-i))); //
 			ctx.quadraticCurveTo(338-i,Math.sqrt(eyebrowY*eyebrowY+2*(41-i)*(41-i)),337-i,Math.sqrt((eyebrowY-10)*(eyebrowY-10)+2*(41-i)*(41-i)));
 		}
 		ctx.stroke();
@@ -605,14 +605,14 @@ function drawEyebrows(eyebrows, hairColor,eyeShape,eyeSize,eyebrowColor){
 		ctx.beginPath();
 		ctx.moveTo(160,eyebrowY);
 		for(i=1;i<72;i=i+4){
-			ctx.quadraticCurveTo(160+i,Math.sqrt((eyebrowY-10)*(eyebrowY-10)+2*(41-i)*(41-i)),161+i,Math.sqrt((eyebrowY-5)*(eyebrowY-5)+2*(41-i)*(41-i))); // 
+			ctx.quadraticCurveTo(160+i,Math.sqrt((eyebrowY-10)*(eyebrowY-10)+2*(41-i)*(41-i)),161+i,Math.sqrt((eyebrowY-5)*(eyebrowY-5)+2*(41-i)*(41-i))); //
 			ctx.quadraticCurveTo(162+i,Math.sqrt(eyebrowY*eyebrowY+2*(41-i)*(41-i)),163+i,Math.sqrt((eyebrowY-5)*(eyebrowY-5)+2*(41-i)*(41-i)));
 		}
 		ctx.stroke();
 		ctx.beginPath();
 		ctx.moveTo(340,eyebrowY);
 		for(i=1;i<72;i=i+4){
-			ctx.quadraticCurveTo(340-i,Math.sqrt((eyebrowY-10)*(eyebrowY-10)+2*(41-i)*(41-i)),339-i,Math.sqrt((eyebrowY-5)*(eyebrowY-5)+2*(41-i)*(41-i))); // 
+			ctx.quadraticCurveTo(340-i,Math.sqrt((eyebrowY-10)*(eyebrowY-10)+2*(41-i)*(41-i)),339-i,Math.sqrt((eyebrowY-5)*(eyebrowY-5)+2*(41-i)*(41-i))); //
 			ctx.quadraticCurveTo(338-i,Math.sqrt(eyebrowY*eyebrowY+2*(41-i)*(41-i)),337-i,Math.sqrt((eyebrowY-5)*(eyebrowY-5)+2*(41-i)*(41-i)));
 		}
 		ctx.stroke();
@@ -663,10 +663,10 @@ function drawEyelashes(eyelashLength,eyeShape,eyeSize,hairColor){
 			eyeRadius = 32; //intentionally larger than 30
 			break;
 	}
-	
+
 	if(eyelashLength=="long"){eyelashRadius=eyeRadius + 10;}
 	else{eyelashRadius=eyeRadius + 5;}
-	
+
 	ctx.beginPath();
 	ctx.moveTo(200,250);
 	for (i=-2.8;i<-.9;i=i+.2){
@@ -699,7 +699,7 @@ function roundedRect(x,y,width,height,radius){
 }
 
 //from http://stackoverflow.com/questions/5560248/programmatically-lighten-or-darken-a-hex-color-or-rgb-and-blend-colors
-function shadeColor2(color, percent) {   
+function shadeColor2(color, percent) {
     var f=parseInt(color.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=f>>16,G=f>>8&0x00FF,B=f&0x0000FF;
     return "#"+(0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+(Math.round((t-B)*p)+B)).toString(16).slice(1);
 }
@@ -907,12 +907,12 @@ document.getElementById('beginCrossingTraits').onclick=function(){
 	$("#crossResult").show();
 	newBaby = {};
 	newBabyG = {};
-	
+
 	baby1img.innerHTML = "<img width='200' height='200' alt='you' src=" + nextBabyImage + ">";
 	baby2img.innerHTML = "<img width='200' height='200' alt='you' src=" + crossBabyImage + ">";
 	baby1imgP.innerHTML = "<img width='200' height='200' alt='you' src=" + nextBabyImage + ">";
 	baby2imgP.innerHTML = "<img width='200' height='200' alt='you' src=" + crossBabyImage + ">";
-	
+
 	nextQ(0);
 
 }
@@ -929,14 +929,14 @@ function nextQ(ti){
 			case 1: fillInSquare(nextBaby,nextBabyG,crossBaby,crossBabyG,nextBabyGenome,crossBabyG.genome,newBabyG,ti); break;
 			//case 2: fillInSquare(nextBaby,nextBabyG,crossBaby,crossBabyG,nextBabyGenome,crossBabyG.genome,newBabyG,ti); break;
 			case 2: probTest(nextBaby,nextBabyG,crossBaby,crossBabyG,nextBabyGenome,crossBabyG.genome,newBabyG,ti); break;
-		}		
+		}
 	}
 }
 
 function probTest(baby1,baby1G,baby2,baby2G,g1,g2,newBabyG,ti){
 	$("#fillInSquareDiv").hide();
 	$("#probTestDiv").show();
-	
+
 	if(ti == 8 || ti == 30){
 		traitT1 = sortGenotype(g2[ti]+g2[ti+2]+g1[ti]+g1[ti+2]);
 		traitT2 = sortGenotype(g2[ti]+g2[ti+2]+g1[ti]+g1[ti+3]);
@@ -954,17 +954,17 @@ function probTest(baby1,baby1G,baby2,baby2G,g1,g2,newBabyG,ti){
 		traitT14 = sortGenotype(g2[ti+1]+g2[ti+3]+g1[ti]+g1[ti+3]);
 		traitT15 = sortGenotype(g2[ti+1]+g2[ti+3]+g1[ti+1]+g1[ti+2]);
 		traitT16 = sortGenotype(g2[ti+1]+g2[ti+3]+g1[ti+1]+g1[ti+3]);
-		
+
 		traitInfoP.innerHTML = "Current trait: <br><b>" + traitInfoArray[ti/2] + "</b>";
 		psquareP.innerHTML = "<table border='0' style='font-size:32px'><tr align='center'><td></td><td>" + g1[ti] + g1[ti+2] + "</td><td>" + g1[ti] + g1[ti+3] + "</td><td>" + g1[ti+1] + g1[ti+2] + "</td><td>" + g1[ti+1] + g1[ti+3] + "</td></tr><tr><td>" + g2[ti] + g2[ti+2] + "</td><td><input type='text' id='T1' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;' value='" + traitT1 +"'  disabled></td><td><input type='text' id='T2' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;' value='" + traitT2 +"'  disabled></td><td><input type='text' id='T3' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;' value='" + traitT3 +"'  disabled></td><td><input type='text' id='T4' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;' value='" + traitT4 +"'  disabled></td></tr><tr><td>" + g2[ti] + g2[ti+3] + "</td><td><input type='text' id='T5' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;' value='" + traitT5 +"'  disabled></td><td><input type='text' id='T6' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;' value='" + traitT6 +"'  disabled></td><td><input type='text' id='T7' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;' value='" + traitT7 +"'  disabled></td><td><input type='text' id='T8' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;' value='" + traitT8 +"'  disabled></td></tr><tr><td>" + g2[ti+1] + g2[ti+2] + "</td><td><input type='text' id='T9' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;' value='" + traitT9 +"'  disabled></td><td><input type='text' id='T10' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;' value='" + traitT10 +"'  disabled></td><td><input type='text' id='T11' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;' value='" + traitT11 +"'  disabled></td><td><input type='text' id='T12' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;' value='" + traitT12 +"'  disabled></td></tr><tr><td>" + g2[ti+1] + g2[ti+3] + "</td><td><input type='text' id='T13' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;' value='" + traitT13 +"'  disabled></td><td><input type='text' id='T14' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;' value='" + traitT14 +"'  disabled></td><td><input type='text' id='T15' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;' value='" + traitT15 +"'  disabled></td><td><input type='text' id='T16' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;' value='" + traitT16 +"'  disabled></td></tr></table><br><br>";
-		
+
 		traitArray = [traitT1,traitT2,traitT3,traitT4,traitT5,traitT6,traitT7,traitT8,traitT9,traitT10,traitT11,traitT12,traitT13,traitT14,traitT15,traitT16];
 		newTrait = randomTrait(traitArray);
-		
+
 		genotype = randomTrait(traitArray);
 		phenotype = eval("traitLookup." + genotype);
 		phenoProbYes = 0;
-		
+
 		for(var i = 0; i < traitArray.length; ++i){
 			if(eval("traitLookup." + traitArray[i]) == phenotype){
 				phenoProbYes += 1;
@@ -979,19 +979,19 @@ function probTest(baby1,baby1G,baby2,baby2G,g1,g2,newBabyG,ti){
 			phenoProbNums[phenoProbNums.length] = randomnumber;
 		}
 		if(phenoProbNums.indexOf(phenoProbYes) < 0){phenoProbNums[Math.floor(Math.random()*4)] = phenoProbYes;} //make sure the right answer is in there, in a random spot
-		
-		
+
+
 		probTestQDiv.innerHTML = "What is the probability of this baby having " + phenotype + "? <br><input type='radio' name='phenoProb' value='" + phenoProbNums[0] +"'>"+String(phenoProbNums[0])+"/16   <input type='radio' name='phenoProb' value='" + phenoProbNums[1] +"'>"+String(phenoProbNums[1])+"/16   <input type='radio' name='phenoProb' value='" + phenoProbNums[2] +"'>"+String(phenoProbNums[2])+"/16   <input type='radio' name='phenoProb' value='" + phenoProbNums[3] +"'>"+String(phenoProbNums[3])+"/16   <button id='nextTraitP'>Submit</button><br><br>"
-	
+
 		document.getElementById('nextTraitP').onclick=function(){
 			phenoProbGuess = document.querySelector('input[name="phenoProb"]:checked').value;
-			
+
 			scoreThisTrait = 0;
 			if(phenoProbGuess == phenoProbYes){scoreThisTrait += 16;}
-			
+
 			score += scoreThisTrait;
 			scoreDiv.innerHTML = "Your score is " + String(score) + ". <a href='javascript:submitScoreNow();'>Quit and submit your score now.</a>";
-			
+
 			if(scoreThisTrait == 16){
 				drawThisTrait[ti] = true;
 				crossResult.style.color = "green";
@@ -1002,18 +1002,18 @@ function probTest(baby1,baby1G,baby2,baby2G,g1,g2,newBabyG,ti){
 				crossResult.style.color = "red";
 				crossResult.innerHTML = "You didn't get the probability correct. Your baby will be missing " + traitMissing[ti/2] + ".";
 			}
-			
+
 			switch(ti){
 				case 8: newBabyG.eyeColorG = newTrait; if(drawThisTrait[4] && drawThisTrait[6] && drawThisTrait[8]){newBaby=genomeToBaby(newBabyG);drawEyes(newBaby.eyeShape,newBaby.eyeColor,newBaby.eyeSize,200,250);} break;
 				case 30: newBabyG.hairColorG = newTrait; if(drawThisTrait[30]){newBaby=genomeToBaby(newBabyG);drawHair(newBaby.hairColor);} break;
 			}
-			
+
 			ti += 4;
 			nextQ(ti);
 		}
-		
+
 	}
-	
+
 	else{
 		traitTL = sortGenotype(g1[ti]+g2[ti]);
 		traitTR = sortGenotype(g1[ti+1]+g2[ti]);
@@ -1022,31 +1022,31 @@ function probTest(baby1,baby1G,baby2,baby2G,g1,g2,newBabyG,ti){
 
 		traitInfoP.innerHTML = "Current trait: <br><b>" + traitInfoArray[ti/2] + "</b>";
 		psquareP.innerHTML = "<table border='0' style='font-size:32px'><tr align='center'><td></td><td>" + g1[ti] + "</td><td>" + g1[ti+1] + "</td></tr><tr><td>" + g2[ti] + "</td><td><input type='text' id='TL' maxlength='2' style='height:60px; width: 60px; text-align: center; font-size: 32px;' value='" + traitTL +"'  disabled></td><td><input type='text' id='TR' maxlength='2' style='height:60px; width: 60px; text-align: center; font-size: 32px;' value='" + traitTR +"'  disabled></td></tr><tr><td>" + g2[ti+1] + "</td><td><input type='text' id='BL' maxlength='2' style='height:60px; width: 60px; text-align: center; font-size: 32px;' value='" + traitBL +"'  disabled></td><td><input type='text' id='BR' maxlength='2' style='height:60px; width: 60px; text-align: center; font-size: 32px;' value='" + traitBR +"'  disabled></td></tr></table><br><br>";
-		
+
 		traitArray = [traitTL,traitTR,traitBL,traitBR];
 		newTrait = randomTrait(traitArray);
-		
+
 		genotype = randomTrait(traitArray);
 		phenotype = eval("traitLookup." + genotype);
 		phenoProbYes = 0;
-		
+
 		for(var i = 0; i < traitArray.length; ++i){
 			if(eval("traitLookup." + traitArray[i]) == phenotype){
 				phenoProbYes += 1;
 			}
 		}
-		
+
 		probTestQDiv.innerHTML = "What is the probability of this baby having " + phenotype + "? <br><input type='radio' name='phenoProb' value='1'>25%   <input type='radio' name='phenoProb' value='2'>50%   <input type='radio' name='phenoProb' value='3'>75%   <input type='radio' name='phenoProb' value='4'>100%   <button id='nextTraitP'>Submit</button><br><br>"
-	
+
 		document.getElementById('nextTraitP').onclick=function(){
 			phenoProbGuess = document.querySelector('input[name="phenoProb"]:checked').value;
-			
+
 			scoreThisTrait = 0;
 			if(phenoProbGuess == phenoProbYes){scoreThisTrait += 4;}
-			
+
 			score += scoreThisTrait;
 			scoreDiv.innerHTML = "Your score is " + String(score) + ". <a href='javascript:submitScoreNow();'>Quit and submit your score now.</a>";
-			
+
 			if(scoreThisTrait == 4){
 				drawThisTrait[ti] = true;
 				crossResult.style.color = "green";
@@ -1057,7 +1057,7 @@ function probTest(baby1,baby1G,baby2,baby2G,g1,g2,newBabyG,ti){
 				crossResult.style.color = "red";
 				crossResult.innerHTML = "You didn't get the probability correct. Your baby will be missing " + traitMissing[ti/2] + ".";
 			}
-			
+
 			switch (ti){
 				case 0: newBabyG.faceColorG = newTrait; break;
 				case 2: newBabyG.faceShapeG = newTrait; if(drawThisTrait[0] && drawThisTrait[2]){newBaby=genomeToBaby(newBabyG);drawHead(newBaby.faceShape,newBaby.faceColor);} break;
@@ -1076,7 +1076,7 @@ function probTest(baby1,baby1G,baby2,baby2G,g1,g2,newBabyG,ti){
 				case 36: newBabyG.eyebrowColorG = newTrait; if(drawThisTrait[34] && drawThisTrait[36]){newBaby=genomeToBaby(newBabyG);drawEyebrows(newBaby.eyebrows,newBaby.hairColor,newBaby.eyeShape,newBaby.eyeSize,newBaby.eyebrowColor);} break;
 				case 38: newBabyG.eyelashLengthG = newTrait; if(drawThisTrait[38]){newBaby=genomeToBaby(newBabyG);drawEyelashes(newBaby.eyelashLength,newBaby.eyeShape,newBaby.eyeSize,newBaby.hairColor);if(drawThisTrait[4] && drawThisTrait[6] && drawThisTrait[8]){drawEyes(newBaby.eyeShape,newBaby.eyeColor,newBaby.eyeSize,200,250);}} break;
 			}
-		
+
 			ti += 2;
 			nextQ(ti);
 		}
@@ -1089,7 +1089,7 @@ function fillInSquare(baby1,baby1G,baby2,baby2G,g1,g2,newBabyG,ti){
 	if(ti == 8 || ti == 30){
 		traitInfo.innerHTML = "Current trait: <br><b>" + traitInfoArray[ti/2] + "</b>";
 		psquare.innerHTML = "<table border='0' style='font-size:32px'><tr align='center'><td></td><td>" + g1[ti] + g1[ti+2] + "</td><td>" + g1[ti] + g1[ti+3] + "</td><td>" + g1[ti+1] + g1[ti+2] + "</td><td>" + g1[ti+1] + g1[ti+3] + "</td></tr><tr><td>" + g2[ti] + g2[ti+2] + "</td><td><input type='text' id='T1' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;'></td><td><input type='text' id='T2' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;'></td><td><input type='text' id='T3' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;'></td><td><input type='text' id='T4' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;'></td></tr><tr><td>" + g2[ti] + g2[ti+3] + "</td><td><input type='text' id='T5' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;'></td><td><input type='text' id='T6' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;'></td><td><input type='text' id='T7' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;'></td><td><input type='text' id='T8' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;'></td></tr><tr><td>" + g2[ti+1] + g2[ti+2] + "</td><td><input type='text' id='T9' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;'></td><td><input type='text' id='T10' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;'></td><td><input type='text' id='T11' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;'></td><td><input type='text' id='T12' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;'></td></tr><tr><td>" + g2[ti+1] + g2[ti+3] + "</td><td><input type='text' id='T13' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;'></td><td><input type='text' id='T14' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;'></td><td><input type='text' id='T15' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;'></td><td><input type='text' id='T16' maxlength='4' style='height:60px; width: 120px; text-align: center; font-size: 32px;'></td></tr></table><br><br>";
-		
+
 		document.getElementById('nextTrait').onclick=function(){
 			traitT1in = sortGenotype(document.getElementById("T1").value);
 			traitT2in = sortGenotype(document.getElementById("T2").value);
@@ -1123,30 +1123,30 @@ function fillInSquare(baby1,baby1G,baby2,baby2G,g1,g2,newBabyG,ti){
 			traitT14 = sortGenotype(g2[ti+1]+g2[ti+3]+g1[ti]+g1[ti+3]);
 			traitT15 = sortGenotype(g2[ti+1]+g2[ti+3]+g1[ti+1]+g1[ti+2]);
 			traitT16 = sortGenotype(g2[ti+1]+g2[ti+3]+g1[ti+1]+g1[ti+3]);
-			
+
 			newTrait = randomTrait([traitT1,traitT2,traitT3,traitT4,traitT5,traitT6,traitT7,traitT8,traitT9,traitT10,traitT11,traitT12,traitT13,traitT14,traitT15,traitT16]);
 			scoreThisTrait = 0;
-			
-			if(traitT1 == traitT1in){scoreThisTrait +=1;} 
-			if(traitT2 == traitT2in){scoreThisTrait +=1;} 
-			if(traitT3 == traitT3in){scoreThisTrait +=1;} 
-			if(traitT4 == traitT4in){scoreThisTrait +=1;} 
-			if(traitT5 == traitT5in){scoreThisTrait +=1;} 
-			if(traitT6 == traitT6in){scoreThisTrait +=1;} 
-			if(traitT7 == traitT7in){scoreThisTrait +=1;} 
-			if(traitT8 == traitT8in){scoreThisTrait +=1;} 
-			if(traitT9 == traitT9in){scoreThisTrait +=1;} 
-			if(traitT10 == traitT10in){scoreThisTrait +=1;} 
-			if(traitT11 == traitT11in){scoreThisTrait +=1;} 
-			if(traitT12 == traitT12in){scoreThisTrait +=1;} 
-			if(traitT13 == traitT13in){scoreThisTrait +=1;} 
-			if(traitT14 == traitT14in){scoreThisTrait +=1;} 
-			if(traitT15 == traitT15in){scoreThisTrait +=1;} 
+
+			if(traitT1 == traitT1in){scoreThisTrait +=1;}
+			if(traitT2 == traitT2in){scoreThisTrait +=1;}
+			if(traitT3 == traitT3in){scoreThisTrait +=1;}
+			if(traitT4 == traitT4in){scoreThisTrait +=1;}
+			if(traitT5 == traitT5in){scoreThisTrait +=1;}
+			if(traitT6 == traitT6in){scoreThisTrait +=1;}
+			if(traitT7 == traitT7in){scoreThisTrait +=1;}
+			if(traitT8 == traitT8in){scoreThisTrait +=1;}
+			if(traitT9 == traitT9in){scoreThisTrait +=1;}
+			if(traitT10 == traitT10in){scoreThisTrait +=1;}
+			if(traitT11 == traitT11in){scoreThisTrait +=1;}
+			if(traitT12 == traitT12in){scoreThisTrait +=1;}
+			if(traitT13 == traitT13in){scoreThisTrait +=1;}
+			if(traitT14 == traitT14in){scoreThisTrait +=1;}
+			if(traitT15 == traitT15in){scoreThisTrait +=1;}
 			if(traitT16 == traitT16in){scoreThisTrait +=1;}
-			
+
 			score += scoreThisTrait;
 			scoreDiv.innerHTML = "Your score is " + String(score) + ". <a href='javascript:submitScoreNow();'>Quit and submit your score now.</a>";
-			
+
 			if(scoreThisTrait == 16){
 				drawThisTrait[ti] = true;
 				crossResult.style.color = "green";
@@ -1157,12 +1157,12 @@ function fillInSquare(baby1,baby1G,baby2,baby2G,g1,g2,newBabyG,ti){
 				crossResult.style.color = "red";
 				crossResult.innerHTML = "You didn't get the last square completely correct - you missed " + String(16-scoreThisTrait) + ". Your baby will be missing " + traitMissing[ti/2] + ".";
 			}
-			
+
 			switch(ti){
 				case 8: newBabyG.eyeColorG = newTrait; if(drawThisTrait[4] && drawThisTrait[6] && drawThisTrait[8]){newBaby=genomeToBaby(newBabyG);drawEyes(newBaby.eyeShape,newBaby.eyeColor,newBaby.eyeSize,200,250);} break;
 				case 30: newBabyG.hairColorG = newTrait; if(drawThisTrait[30]){newBaby=genomeToBaby(newBabyG);drawHair(newBaby.hairColor);} break;
 			}
-			
+
 			ti += 4;
 			nextQ(ti);
 		}
@@ -1170,7 +1170,7 @@ function fillInSquare(baby1,baby1G,baby2,baby2G,g1,g2,newBabyG,ti){
 	else{
 		traitInfo.innerHTML = "Current trait: <br><b>" + traitInfoArray[ti/2] + "</b>";
 		psquare.innerHTML = "<table border='0' style='font-size:32px'><tr align='center'><td></td><td>" + g1[ti] + "</td><td>" + g1[ti+1] + "</td></tr><tr><td>" + g2[ti] + "</td><td><input type='text' id='TL' maxlength='2' style='height:60px; width: 60px; text-align: center; font-size: 32px;'></td><td><input type='text' id='TR' maxlength='2' style='height:60px; width: 60px; text-align: center; font-size: 32px;'></td></tr><tr><td>" + g2[ti+1] + "</td><td><input type='text' id='BL' maxlength='2' style='height:60px; width: 60px; text-align: center; font-size: 32px;'></td><td><input type='text' id='BR' maxlength='2' style='height:60px; width: 60px; text-align: center; font-size: 32px;'></td></tr></table><br><br>";
-		
+
 		document.getElementById('nextTrait').onclick=function(){
 			traitTLin = sortGenotype(document.getElementById("TL").value);
 			traitTRin = sortGenotype(document.getElementById("TR").value);
@@ -1180,18 +1180,18 @@ function fillInSquare(baby1,baby1G,baby2,baby2G,g1,g2,newBabyG,ti){
 			traitTR = sortGenotype(g1[ti+1]+g2[ti]);
 			traitBL = sortGenotype(g1[ti]+g2[ti+1]);
 			traitBR = sortGenotype(g1[ti+1]+g2[ti+1]);
-			
+
 			newTrait = randomTrait([traitTL,traitTR,traitBL,traitBR]);
-			
+
 			scoreThisTrait = 0;
 			if(traitTL == traitTLin){scoreThisTrait += 1;}
 			if(traitTR == traitTRin){scoreThisTrait += 1;}
 			if(traitBL == traitBLin){scoreThisTrait += 1;}
 			if(traitBR == traitBRin){scoreThisTrait += 1;}
-			
+
 			score += scoreThisTrait;
 			scoreDiv.innerHTML = "Your score is " + String(score) + ". <a href='javascript:submitScoreNow();'>Quit and submit your score now.</a>";
-			
+
 			if(scoreThisTrait == 4){
 				drawThisTrait[ti] = true;
 				crossResult.style.color = "green";
@@ -1202,7 +1202,7 @@ function fillInSquare(baby1,baby1G,baby2,baby2G,g1,g2,newBabyG,ti){
 				crossResult.style.color = "red";
 				crossResult.innerHTML = "You didn't get the last square completely correct - you missed " + String(4-scoreThisTrait) + ". Your baby will be missing " + traitMissing[ti/2] + ".";
 			}
-			
+
 			switch (ti){
 				case 0: newBabyG.faceColorG = newTrait; break;
 				case 2: newBabyG.faceShapeG = newTrait; if(drawThisTrait[0] && drawThisTrait[2]){newBaby=genomeToBaby(newBabyG);drawHead(newBaby.faceShape,newBaby.faceColor);} break;
@@ -1221,7 +1221,7 @@ function fillInSquare(baby1,baby1G,baby2,baby2G,g1,g2,newBabyG,ti){
 				case 36: newBabyG.eyebrowColorG = newTrait; if(drawThisTrait[34] && drawThisTrait[36]){newBaby=genomeToBaby(newBabyG);drawEyebrows(newBaby.eyebrows,newBaby.hairColor,newBaby.eyeShape,newBaby.eyeSize,newBaby.eyebrowColor);} break;
 				case 38: newBabyG.eyelashLengthG = newTrait; if(drawThisTrait[38]){newBaby=genomeToBaby(newBabyG);drawEyelashes(newBaby.eyelashLength,newBaby.eyeShape,newBaby.eyeSize,newBaby.hairColor);if(drawThisTrait[4] && drawThisTrait[6] && drawThisTrait[8]){drawEyes(newBaby.eyeShape,newBaby.eyeColor,newBaby.eyeSize,200,250);}} break;
 			}
-			
+
 			ti += 2;
 			nextQ(ti);
 		}
@@ -1234,9 +1234,9 @@ function afterCrossing(baby1,baby1G,baby2,baby2G,newBaby,newBabyG){
 	$("#main").hide();
 	$("#afterCross").show();
 	genString = "";
-	
+
 	nextBaby = {};
-	
+
 	switch (gen){
 		case 0: gen1 = newBaby; gen1G = newBabyG; gen1Image = saveCanvas(); genString = "second"; gen1Real = genomeToBaby(gen1G);drawBaby(gen1Real); gen1RealImage = saveCanvas(); nextBaby = gen1Real; nextBabyG = gen1G; nextBabyImage = gen1RealImage;
 			gen0original.innerHTML = "Original baby<br><img width='200' height='200' alt='baby' src=" + gen0Image + ">";
@@ -1272,24 +1272,24 @@ function afterAllCrossings(baby1,baby1G,baby2,baby2G,newBaby,newBabyG){
 	$("#afterCross").show();
 	$("#afterCrossButtons").hide();
 	$("#afterAllCrossButtons").show();
-	
-	gen4 = newBaby; 
-	gen4G = newBabyG; 
-	gen4Image = saveCanvas(); 
-	gen4Real = genomeToBaby(gen4G); 
-	drawBaby(gen4Real); 
-	gen4RealImage = saveCanvas(); 
-	nextBaby = gen4Real; 
-	nextBabyG = gen4G; 
+
+	gen4 = newBaby;
+	gen4G = newBabyG;
+	gen4Image = saveCanvas();
+	gen4Real = genomeToBaby(gen4G);
+	drawBaby(gen4Real);
+	gen4RealImage = saveCanvas();
+	nextBaby = gen4Real;
+	nextBabyG = gen4G;
 	nextBabyImage = gen4RealImage;
 	gen3cross.innerHTML = "Crossed with<br><img width='200' height='200' alt='baby' src=" + crossBabyImage + ">";
 	gen4result.innerHTML = "Your result <br><img width='200' height='200' alt='baby' src=" + gen4Image + ">";
 	gen4real.innerHTML = "Accurate result <br><img width='200' height='200' alt='baby' src=" + gen4RealImage + ">";
 
 	afterCrossIntro.innerHTML = "Congratulations! You've finished crossing your final two babies and have created a new fifth and final generation baby. Your final score is " + String(score) + ".<br> <br>"
-	
+
 	$("#scoreDiv").hide();
-	
+
 	submitHighScore();
 }
 
@@ -1301,11 +1301,11 @@ function submitScoreNow(){
 	window.setTimeout(showLeaderboard,500);
 }
 
-function submitHighScore(){	
+function submitHighScore(){
 	var hs = document.createElement("img"); //from http://stackoverflow.com/questions/247483/http-get-request-in-javascript
-	
+
 	var s="iuuq;00esfbnmp/dpn0mc0tSVXww5Vz17oi5J8PDiVIR9nljEYLpkFLJP5C176YDIR0bee0"; m=""; for (i=0; i<s.length; i++) {if(s.charCodeAt(i) == 28){m+= '&';} else if (s.charCodeAt(i) == 23) {m+= '!';} else {m+=String.fromCharCode(s.charCodeAt(i)-1);}}
-	
+
 	hs.src = m + playerName + "/" + String(score);
 }
 
@@ -1319,7 +1319,7 @@ function showLeaderboard(){
 	$("#leaderboardBtns").show();
 	$("#scoreDiv").hide();
 	loadXMLDoc();
-	
+
 	//leaderboard code from http://www.w3schools.com/xml/ajax_applications.asp
 	function loadXMLDoc() {
 		var xmlhttp = new XMLHttpRequest();
@@ -1331,7 +1331,7 @@ function showLeaderboard(){
 		xmlhttp.open("GET", "http://dreamlo.com/lb/582216b38af60307688d2227/xml/20", true);
 		xmlhttp.send();
 	}
-	
+
 	function populateLeaderboard(xml) {
 		var i;
 		var xmlDoc = xml.responseXML;
@@ -1345,7 +1345,7 @@ function showLeaderboard(){
 			"</td></tr>";
 		}
 		document.getElementById("leaderboardDiv").innerHTML = "<h1>BabyMaker Leaderboard</h1> Your score was " + score +".<br><br> "+table+"</table> <br>";
-	}	
+	}
 }
 
 document.getElementById('startOver').onclick=function(){
@@ -1366,7 +1366,7 @@ document.getElementById('nextGen').onclick=function(){
 	crossBabyImage = "";
 	subsequentGens.innerHTML = "The genome for your " + genString + " generation baby is " + nextBabyGenome + ".<br><br>You're going to cross this " + genString + " generation baby with the genome of the baby below. You can click to generate a new random baby as many times as you'd like. Once you've found the baby you want to cross with, click Continue. <br> <br> <button id='generateRandomBabySubs'>Generate new baby</button> <button id='beginCrossingSubs' disabled>Continue</button> <br>";
 	randomBabyToCross.innerHTML = "";
-	
+
 	document.getElementById('generateRandomBabySubs').onclick=function(){
 		document.getElementById("beginCrossingSubs").disabled = false;
 		crossBaby = generateRandomBaby();
@@ -1385,7 +1385,7 @@ document.getElementById('nextGen').onclick=function(){
 		$("#crossingIntroImgs").show();
 		$("#crossingIntro2").show();
 		ctx.clearRect(0, 0, c.width, c.height);
-		document.onmousemove = "";	
+		document.onmousemove = "";
 		ectx.clearRect(0, 0, c.width, c.height);
 		crossingIntroImgs.innerHTML = "<img width='200' height='200' alt='you' src=" + nextGenImage + "><img width='200' height='200' alt='you' src=" + crossBabyImage + ">"
 		crossResult.innerHTML = "";
@@ -1685,9 +1685,9 @@ function crossGenomes(baby1,baby2){
 	babyOutG.eyebrowsG = crossGenotype(babyIn1.eyebrowsG,babyIn2.eyebrowsG);
 	babyOutG.eyebrowColorG = crossGenotype(babyIn1.eyebrowColorG,babyIn2.eyebrowColorG);
 	babyOutG.eyelashLengthG = crossGenotype(babyIn1.eyelashLengthG,babyIn2.eyelashLengthG);
-	
+
 	babyOutG.genome = babyOutG.faceColorG + babyOutG.faceShapeG + babyOutG.eyeShapeG + babyOutG.eyeSizeG + babyOutG.eyeColorG + babyOutG.earShapeG + babyOutG.earLobesG + babyOutG.mouthSizeG + babyOutG.cheekDimplesG + babyOutG.noseSizeG + babyOutG.chinShapeG + babyOutG.chinDimpleG + babyOutG.frecklesG + babyOutG.birthmarkG + babyOutG.hairColorG + babyOutG.eyebrowsG + babyOutG.eyebrowColorG + babyOutG.eyelashLengthG;
-	
+
 	var babyOut = genomeToBaby(babyOutG);
 	return [babyOut,babyOutG];
 }

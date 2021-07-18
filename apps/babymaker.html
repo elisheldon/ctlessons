@@ -1,235 +1,347 @@
 <!doctype html>
-<html>
+
+<html lang="en">
+
 <head>
-<meta charset="utf-8">
-<style>
-#genome {
-	font-family: courier, monospace;
-}
-input { font-family: serif; }
-p {
-     margin: 0px;
-}
-div {
-     margin: 0px;
-}
-</style>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  ga('create', 'UA-87815122-1', 'auto');
-  ga('send', 'pageview');
+    <title>Baby Maker</title>
+    <meta name="description" content="Web app powering Making Babies with Punnet Squares lesson">
+    <meta name="author" content="Eli Sheldon">
 
-</script>
+    <meta property="og:title" content="Baby Maker">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ctlessons.org/apps/babymaker.html">
+    <meta property="og:description" content="Web app powering Making Babies with Punnet Squares lesson">
+    <meta property="og:image" content="../images/babymaker.png">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+	<link rel="manifest" href="../site.webmanifest">
+	<link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.0.2/dist/litera/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-NM0WRN8VNF"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-NM0WRN8VNF');
+	</script>
+
+	<style>
+          #genome {
+               font-family: courier, monospace;
+          }
+          input { font-family: serif; }
+          p {
+               margin: 0px;
+          }
+          div {
+               margin: 0px;
+          }
+     </style>
+
+    <script data-ad-client="ca-pub-2264946088428596" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
 </head>
+
 <body onload="startFunction()">
-<div id="main">
-<table style="width:1280px" border="0">
-<tr style="height:500px">
-<td style="width:780px" valign="top">
-<div id="start">
-<h1>Welcome to BabyMaker! </h1><br>
 
-You will begin by identifying your own traits. As you go, you will begin to see exactly what you looked like as a baby. <br> <br>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="../index.html">Computational Thinking Lessons</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Math</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="../math/basketball-motion-analysis.html">Basketball Motion Analysis</a></li>
+                <li><a class="dropdown-item" href="../math/polygon-transformations.html">Polygon Transformations</a></li>
+                <li><a class="dropdown-item" href="../math/racial-bias-in-traffic-stops.html">Racial Bias in Traffic Stops</a></li>
+                <li><a class="dropdown-item" href="../math/rational-football-league.html">Rational Football League</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Apps</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="../apps/polygonTransformer.html">Polygon Transformer</a></li>
+                <li><a class="dropdown-item" href="../apps/rationalFootballLeague.html">Rational Football League</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <br>
 
-Answer each question as best you can. If you can't figure out an answer, ask someone nearby to help you decide! <br> <br>
+    <div class="container">
 
-Enter your full name: <input type="text" id="playerNameIn" maxlength="30" width="30"><br><br>
+     <div id="main">
+          <table style="width:1280px" border="0">
+               <tr style="height:500px">
+                    <td style="width:780px" valign="top">
+                         <div id="start">
+                              <h1>Welcome to BabyMaker! </h1><br>
 
-<button id="showSkinTone">Let's get started!</button>
-<button id="createRandomGen0">Start with a random baby</button> <br><br>
-</div>
+                              You will begin by identifying your own traits. As you go, you will begin to see exactly what you looked like as a baby. <br> <br>
 
-<div id="traitSkinTone" style="display: none;">
-First up is your skin tone. Would you say your skin is light, medium or dark in pigment? <br>
-<input type="radio" name="faceColor" value="#FAE7D0"> light <br>
-<input type="radio" name="faceColor" value="#C77A58"> medium <br>
-<input type="radio" name="faceColor" value="#710200"> dark <br> <br>
-<button id="showFaceShape">Continue</button>
-</div>
+                              Answer each question as best you can. If you can't figure out an answer, ask someone nearby to help you decide! <br> <br>
 
-<div id="traitFaceShape" style="display: none;">
-Next up is the shape of your face. Would you say you have a round face or a square face? <br>
-<input type="radio" name="faceShape" value="round"> round <br>
-<input type="radio" name="faceShape" value="square"> square <br> <br>
-<button id="showEyes">Continue</button>
-</div>
+                              Enter your full name: <input type="text" id="playerNameIn" maxlength="30" width="30"><br><br>
 
-<div id="traitEyes" style="display: none;">
-Now for your eyes. Would you say your eyes are wide or more round? <br>
-<input type="radio" name="eyeShape" value="round"> round <br>
-<input type="radio" name="eyeShape" value="wide"> wide <br> <br>
-Are your eyes small, medium or large? <br>
-<input type="radio" name="eyeSize" value="small"> small <br>
-<input type="radio" name="eyeSize" value="medium"> medium <br>
-<input type="radio" name="eyeSize" value="large"> large <br> <br>
-What color are your eyes? <br>
-<input type="radio" name="eyeColor" value="#513e38"> deep brown <br>
-<input type="radio" name="eyeColor" value="#693f41"> medium brown <br>
-<input type="radio" name="eyeColor" value="#5c5c34"> greenish brown <br>
-<input type="radio" name="eyeColor" value="#785b4c"> light brown <br>
-<input type="radio" name="eyeColor" value="#6c797e"> gray-blue <br>
-<input type="radio" name="eyeColor" value="#788162"> green <br>
-<input type="radio" name="eyeColor" value="#8aaed6"> light blue <br>
-<input type="radio" name="eyeColor" value="#bea0be"> pink <br> <br>
-<button id="showEars">Continue</button>
-</div>
+                              <button id="showSkinTone">Let's get started!</button>
+                              <button id="createRandomGen0">Start with a random baby</button> <br><br>
+                         </div>
 
-<div id="traitEars" style="display: none;">
-Onto your ears. Would you say your ears are long or more round? <br>
-<input type="radio" name="earShape" value="long"> long <br>
-<input type="radio" name="earShape" value="round"> round <br> <br>
-And are your ear lobes (the bottom part of your ears) attached to the side of your head, or hanging free? <br>
-<input type="radio" name="earLobes" value="attached"> attached  <br>
-<input type="radio" name="earLobes" value="free"> free <br> <br>
-<button id="showMouth">Continue</button>
-</div>
+                         <div id="traitSkinTone" style="display: none;">
+                              First up is your skin tone. Would you say your skin is light, medium or dark in pigment? <br>
+                              <input type="radio" name="faceColor" value="#FAE7D0"> light <br>
+                              <input type="radio" name="faceColor" value="#C77A58"> medium <br>
+                              <input type="radio" name="faceColor" value="#710200"> dark <br> <br>
+                              <button id="showFaceShape">Continue</button>
+                         </div>
 
-<div id="traitMouth" style="display: none;">
-Now for your mouth. Would you say your mouth is narrow, medium or wide? <br>
-<input type="radio" name="mouthSize" value="narrow"> narrow <br>
-<input type="radio" name="mouthSize" value="medium"> medium <br>
-<input type="radio" name="mouthSize" value="wide"> wide <br> <br>
-Do you have dimples on your cheeks?  <br>
-<input type="radio" name="cheekDimples" value="true"> yes <br>
-<input type="radio" name="cheekDimples" value="false"> no <br> <br>
-<button id="showNose">Continue</button>
-</div>
+                         <div id="traitFaceShape" style="display: none;">
+                              Next up is the shape of your face. Would you say you have a round face or a square face? <br>
+                              <input type="radio" name="faceShape" value="round"> round <br>
+                              <input type="radio" name="faceShape" value="square"> square <br> <br>
+                              <button id="showEyes">Continue</button>
+                         </div>
 
-<div id="traitNose" style="display: none;">
-Let's get to know your nose. Would you say your nose is small, medium or large? Be honest! <br>
-<input type="radio" name="noseSize" value="small"> small <br>
-<input type="radio" name="noseSize" value="medium"> medium <br>
-<input type="radio" name="noseSize" value="large"> large <br> <br>
-<button id="showChin">Continue</button>
-</div>
+                         <div id="traitEyes" style="display: none;">
+                              Now for your eyes. Would you say your eyes are wide or more round? <br>
+                              <input type="radio" name="eyeShape" value="round"> round <br>
+                              <input type="radio" name="eyeShape" value="wide"> wide <br> <br>
+                              Are your eyes small, medium or large? <br>
+                              <input type="radio" name="eyeSize" value="small"> small <br>
+                              <input type="radio" name="eyeSize" value="medium"> medium <br>
+                              <input type="radio" name="eyeSize" value="large"> large <br> <br>
+                              What color are your eyes? <br>
+                              <input type="radio" name="eyeColor" value="#513e38"> deep brown <br>
+                              <input type="radio" name="eyeColor" value="#693f41"> medium brown <br>
+                              <input type="radio" name="eyeColor" value="#5c5c34"> greenish brown <br>
+                              <input type="radio" name="eyeColor" value="#785b4c"> light brown <br>
+                              <input type="radio" name="eyeColor" value="#6c797e"> gray-blue <br>
+                              <input type="radio" name="eyeColor" value="#788162"> green <br>
+                              <input type="radio" name="eyeColor" value="#8aaed6"> light blue <br>
+                              <input type="radio" name="eyeColor" value="#bea0be"> pink <br> <br>
+                              <button id="showEars">Continue</button>
+                         </div>
 
-<div id="traitChin" style="display: none;">
-Consider your chin. Would you say it's protruding from your head, or hidden? <br>
-<input type="radio" name="chinShape" value="protruding"> protruding <br>
-<input type="radio" name="chinShape" value="hidden"> hidden <br> <br>
-Does your chin have a dimple in the middle? <br>
-<input type="radio" name="chinDimple" value="true"> yes <br>
-<input type="radio" name="chinDimple" value="false"> no <br> <br>
-<button id="showCheeks">Continue</button>
-</div>
+                         <div id="traitEars" style="display: none;">
+                              Onto your ears. Would you say your ears are long or more round? <br>
+                              <input type="radio" name="earShape" value="long"> long <br>
+                              <input type="radio" name="earShape" value="round"> round <br> <br>
+                              And are your ear lobes (the bottom part of your ears) attached to the side of your head, or hanging free? <br>
+                              <input type="radio" name="earLobes" value="attached"> attached <br>
+                              <input type="radio" name="earLobes" value="free"> free <br> <br>
+                              <button id="showMouth">Continue</button>
+                         </div>
 
-<div id="traitCheeks" style="display: none;">
-Do you have freckles? <br>
-<input type="radio" name="freckles" value="true"> yes <br>
-<input type="radio" name="freckles" value="false"> no <br> <br>
-What about a birthmark on either side of your face? <br>
-<input type="radio" name="birthmark" value="left"> left side <br>
-<input type="radio" name="birthmark" value="right"> right side <br>
-<input type="radio" name="birthmark" value="none"> none <br> <br>
-<button id="showHair">Continue</button>
-</div>
+                         <div id="traitMouth" style="display: none;">
+                              Now for your mouth. Would you say your mouth is narrow, medium or wide? <br>
+                              <input type="radio" name="mouthSize" value="narrow"> narrow <br>
+                              <input type="radio" name="mouthSize" value="medium"> medium <br>
+                              <input type="radio" name="mouthSize" value="wide"> wide <br> <br>
+                              Do you have dimples on your cheeks? <br>
+                              <input type="radio" name="cheekDimples" value="true"> yes <br>
+                              <input type="radio" name="cheekDimples" value="false"> no <br> <br>
+                              <button id="showNose">Continue</button>
+                         </div>
 
-<div id="traitHair" style="display: none;">
-Last but not least, let's look at your hair. What color is the hair on top of your head? <br>
-<input type="radio" name="hairColor" value="#000000"> black <br>
-<input type="radio" name="hairColor" value="#B55239"> red <br>
-<input type="radio" name="hairColor" value="#3B3024"> dark brown <br>
-<input type="radio" name="hairColor" value="#6A4E42"> light brown <br>
-<input type="radio" name="hairColor" value="#B89778"> dark blond <br>
-<input type="radio" name="hairColor" value="#E6CEA8"> blond <br>
-<input type="radio" name="hairColor" value="#FFF5E1"> white <br> <br>
-Are your eyebrows thick or fine? <br>
-<input type="radio" name="eyebrows" value="bushy"> thick <br>
-<input type="radio" name="eyebrows" value="fine"> fine <br> <br>
-Are your eyebrows lighter, the same color as or darker than your hair? <br>
-<input type="radio" name="eyebrowColor" value="lighter"> lighter <br>
-<input type="radio" name="eyebrowColor" value="same"> same <br>
-<input type="radio" name="eyebrowColor" value="darker"> darker <br> <br>
-Are your eyelashes long or short? <br>
-<input type="radio" name="eyelashLength" value="long"> long <br>
-<input type="radio" name="eyelashLength" value="short"> short <br> <br>
-<button id="finishIntroBtn">Finish identifying your own traits</button>
-</div>
+                         <div id="traitNose" style="display: none;">
+                              Let's get to know your nose. Would you say your nose is small, medium or large? Be honest! <br>
+                              <input type="radio" name="noseSize" value="small"> small <br>
+                              <input type="radio" name="noseSize" value="medium"> medium <br>
+                              <input type="radio" name="noseSize" value="large"> large <br> <br>
+                              <button id="showChin">Continue</button>
+                         </div>
 
-<div id="finishIntro" style="display: none;">
-Congratulations! You've finished recreating yourself as a baby. <br><br>
-Your genome is 
-</div>
+                         <div id="traitChin" style="display: none;">
+                              Consider your chin. Would you say it's protruding from your head, or hidden? <br>
+                              <input type="radio" name="chinShape" value="protruding"> protruding <br>
+                              <input type="radio" name="chinShape" value="hidden"> hidden <br> <br>
+                              Does your chin have a dimple in the middle? <br>
+                              <input type="radio" name="chinDimple" value="true"> yes <br>
+                              <input type="radio" name="chinDimple" value="false"> no <br> <br>
+                              <button id="showCheeks">Continue</button>
+                         </div>
 
-<div id="subsequentGens" style="display: none;">
-</div>
+                         <div id="traitCheeks" style="display: none;">
+                              Do you have freckles? <br>
+                              <input type="radio" name="freckles" value="true"> yes <br>
+                              <input type="radio" name="freckles" value="false"> no <br> <br>
+                              What about a birthmark on either side of your face? <br>
+                              <input type="radio" name="birthmark" value="left"> left side <br>
+                              <input type="radio" name="birthmark" value="right"> right side <br>
+                              <input type="radio" name="birthmark" value="none"> none <br> <br>
+                              <button id="showHair">Continue</button>
+                         </div>
 
-<div id="generateBabyToCross" style="display: none;">
-You're going to cross your genome with the genome of the baby below. You can click to generate a new random baby as many times as you'd like. Once you've found the baby you want to cross with, click Continue. <br> <br>
+                         <div id="traitHair" style="display: none;">
+                              Last but not least, let's look at your hair. What color is the hair on top of your head? <br>
+                              <input type="radio" name="hairColor" value="#000000"> black <br>
+                              <input type="radio" name="hairColor" value="#B55239"> red <br>
+                              <input type="radio" name="hairColor" value="#3B3024"> dark brown <br>
+                              <input type="radio" name="hairColor" value="#6A4E42"> light brown <br>
+                              <input type="radio" name="hairColor" value="#B89778"> dark blond <br>
+                              <input type="radio" name="hairColor" value="#E6CEA8"> blond <br>
+                              <input type="radio" name="hairColor" value="#FFF5E1"> white <br> <br>
+                              Are your eyebrows thick or fine? <br>
+                              <input type="radio" name="eyebrows" value="bushy"> thick <br>
+                              <input type="radio" name="eyebrows" value="fine"> fine <br> <br>
+                              Are your eyebrows lighter, the same color as or darker than your hair? <br>
+                              <input type="radio" name="eyebrowColor" value="lighter"> lighter <br>
+                              <input type="radio" name="eyebrowColor" value="same"> same <br>
+                              <input type="radio" name="eyebrowColor" value="darker"> darker <br> <br>
+                              Are your eyelashes long or short? <br>
+                              <input type="radio" name="eyelashLength" value="long"> long <br>
+                              <input type="radio" name="eyelashLength" value="short"> short <br> <br>
+                              <button id="finishIntroBtn">Finish identifying your own traits</button>
+                         </div>
 
-<button id="generateRandomBaby">Generate new baby</button>
-<button id="beginCrossing" disabled>Continue</button> <br>
-</div>
+                         <div id="finishIntro" style="display: none;">
+                              Congratulations! You've finished recreating yourself as a baby. <br><br>
+                              Your genome is
+                         </div>
 
-<div id="randomBabyToCross" style="display: none;">
-</div>
+                         <div id="subsequentGens" style="display: none;">
+                         </div>
 
-<div id="crossingIntro" style="display: none;">
-It's now time to cross these two babies. <br>
-</div>
+                         <div id="generateBabyToCross" style="display: none;">
+                              You're going to cross your genome with the genome of the baby below. You can click to generate a new random baby as many times as you'd like. Once you've found the baby you want to cross with, click Continue. <br> <br>
 
-<div id="crossingIntroImgs" style="display: none;">
-</div>
+                              <button id="generateRandomBaby">Generate new baby</button>
+                              <button id="beginCrossing" disabled>Continue</button> <br>
+                         </div>
 
-<div id="crossingIntro2" style="display: none;">
-You will be presented with a Punnett Square for each trait.<br><br>
-<button id="beginCrossingTraits">Start crossing!</button>
-</div>
+                         <div id="randomBabyToCross" style="display: none;">
+                         </div>
 
-<div id="crossingTraits" style="display: none;">
-<div id="crossResult" style="display: none;"></div>
-<div id="fillInSquareDiv" style="display:none;">
-Fill in all parts of the Punnett square below!
-<table border="0"><tr><td id="traitInfo" align="center" style="font-size: 24px"></td><td id="baby1img"></td></tr><tr><td id="baby2img"></td><td id="psquare"></td></tr></table>
-<button id='nextTrait'>Next trait</button><br><br>
-</div>
-<div id="probTestDiv" style="display:none;">
-<table border="0"><tr><td id="traitInfoP" align="center" style="font-size: 24px"></td><td id="baby1imgP"></td></tr><tr><td id="baby2imgP"></td><td id="psquareP"></td></tr></table>
-<div id="probTestQDiv">
-</div>
-</div>
-</div>
-</td>
-<td valign="top">
-<canvas id="babyFace" width="500" height="500" style="border:0px; position: absolute; z-index: 0;"></canvas>
-<canvas id="movingEyes" width="500" height="500" style="border:0px; position: absolute; z-index: 1;"></canvas>
-<div id="scoreDiv" align="center" style="position: absolute; z-index: 2;"></div>
-</td>
-<tr style="height:100px">
-<td>
-<div id="babyScreen" style="display: none;"></div>
-</td>
-<td>
-<!--<div id="genome"></div>-->
-</td>
-</tr>
-</table>
-</div>
-<div id="afterCross" style="display: none;">
-<div id="afterCrossIntro">
-</div>
-<div id="afterCrossButtons">
-<button id="nextGen">Onto the next generation!</button><br><br>
-</div>
-<div id="afterAllCrossButtons" style="display: none;">
-<button id="goToScores">Submit your score to the leaderboard</button><br><br>
-</div>
-<div id="afterCrossTable">
-<table border="1"><tr align="center"><td>First generation</td><td>Second generation</td><td>Third generation</td><td>Fourth generation</td><td>Fifth generation</td></tr><tr align="center"><td></td><td id="gen1result"></td><td id="gen2result"></td><td id="gen3result"></td><td id="gen4result"></td></tr><tr align="center"><td id="gen0original"></td><td id="gen1real"></td><td id="gen2real"></td><td id="gen3real"></td><td id="gen4real"></td></tr><tr align="center"><td id="gen0cross"></td><td id="gen1cross"></td><td id="gen2cross"></td><td id="gen3cross"></td><td id="gen4cross"></td></tr></table>
-</div>
-</div>
-<div id="leaderboardDiv" style="display: none;">
-</div>
-<div id="leaderboardBtns" style="display: none;">
-<button id="startOver">Start over from the beginning</button><br><br>
-If you don't see the leaderboard above, try submitting your score again!
-<button id="resubmitScore">Submit score again</button>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="babymaker.js"></script>
+                         <div id="crossingIntro" style="display: none;">
+                              It's now time to cross these two babies. <br>
+                         </div>
+
+                         <div id="crossingIntroImgs" style="display: none;">
+                         </div>
+
+                         <div id="crossingIntro2" style="display: none;">
+                              You will be presented with a Punnett Square for each trait.<br><br>
+                              <button id="beginCrossingTraits">Start crossing!</button>
+                         </div>
+
+                         <div id="crossingTraits" style="display: none;">
+                              <div id="crossResult" style="display: none;"></div>
+                              <div id="fillInSquareDiv" style="display:none;">
+                                   Fill in all parts of the Punnett square below!
+                                   <table border="0">
+                                        <tr>
+                                             <td id="traitInfo" align="center" style="font-size: 24px"></td>
+                                             <td id="baby1img"></td>
+                                        </tr>
+                                        <tr>
+                                             <td id="baby2img"></td>
+                                             <td id="psquare"></td>
+                                        </tr>
+                                   </table>
+                                   <button id='nextTrait'>Next trait</button><br><br>
+                              </div>
+                              <div id="probTestDiv" style="display:none;">
+                                   <table border="0">
+                                        <tr>
+                                             <td id="traitInfoP" align="center" style="font-size: 24px"></td>
+                                             <td id="baby1imgP"></td>
+                                        </tr>
+                                        <tr>
+                                             <td id="baby2imgP"></td>
+                                             <td id="psquareP"></td>
+                                        </tr>
+                                   </table>
+                                   <div id="probTestQDiv">
+                                   </div>
+                              </div>
+                         </div>
+                    </td>
+                    <td valign="top">
+                         <canvas id="babyFace" width="500" height="500" style="border:0px; position: absolute; z-index: 0;"></canvas>
+                         <canvas id="movingEyes" width="500" height="500" style="border:0px; position: absolute; z-index: 1;"></canvas>
+                         <div id="scoreDiv" align="center" style="position: absolute; z-index: 2;"></div>
+                    </td>
+               <tr style="height:100px">
+                    <td>
+                         <div id="babyScreen" style="display: none;"></div>
+                    </td>
+                    <td>
+                         <!--<div id="genome"></div>-->
+                    </td>
+               </tr>
+          </table>
+     </div>
+     <div id="afterCross" style="display: none;">
+          <div id="afterCrossIntro">
+          </div>
+          <div id="afterCrossButtons">
+               <button id="nextGen">Onto the next generation!</button><br><br>
+          </div>
+          <div id="afterAllCrossButtons" style="display: none;">
+               <button id="goToScores">Submit your score to the leaderboard</button><br><br>
+          </div>
+          <div id="afterCrossTable">
+               <table border="1">
+                    <tr align="center">
+                         <td>First generation</td>
+                         <td>Second generation</td>
+                         <td>Third generation</td>
+                         <td>Fourth generation</td>
+                         <td>Fifth generation</td>
+                    </tr>
+                    <tr align="center">
+                         <td></td>
+                         <td id="gen1result"></td>
+                         <td id="gen2result"></td>
+                         <td id="gen3result"></td>
+                         <td id="gen4result"></td>
+                    </tr>
+                    <tr align="center">
+                         <td id="gen0original"></td>
+                         <td id="gen1real"></td>
+                         <td id="gen2real"></td>
+                         <td id="gen3real"></td>
+                         <td id="gen4real"></td>
+                    </tr>
+                    <tr align="center">
+                         <td id="gen0cross"></td>
+                         <td id="gen1cross"></td>
+                         <td id="gen2cross"></td>
+                         <td id="gen3cross"></td>
+                         <td id="gen4cross"></td>
+                    </tr>
+               </table>
+          </div>
+     </div>
+     <div id="leaderboardDiv" style="display: none;">
+     </div>
+     <div id="leaderboardBtns" style="display: none;">
+          <button id="startOver">Start over from the beginning</button><br><br>
+          If you don't see the leaderboard above, try submitting your score again!
+          <button id="resubmitScore">Submit score again</button>
+     </div>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+     <script src="babymaker.js"></script>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
+
 </html>

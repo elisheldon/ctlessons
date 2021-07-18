@@ -1,28 +1,88 @@
 <!doctype html>
-<html>
+
+<html lang="en">
+
 <head>
-<title>Solar Systems</title>
-<meta charset="utf-8">
-<style>
-</style>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  ga('create', 'UA-87815122-1', 'auto');
-  ga('send', 'pageview');
+    <title>Solar Systems</title>
+    <meta name="description" content="Web app powering Designing a Solar System lesson">
+    <meta name="author" content="Eli Sheldon">
 
-</script>
+    <meta property="og:title" content="Solar Systems">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ctlessons.org/apps/solarSystems/solarSystems.html">
+    <meta property="og:description" content="Web app powering Designing a Solar System lesson">
+    <meta property="og:image" content="../../images/solar_systems.png">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+	<link rel="manifest" href="../../site.webmanifest">
+	<link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.0.2/dist/litera/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-NM0WRN8VNF"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-NM0WRN8VNF');
+	</script>
+
+    <script data-ad-client="ca-pub-2264946088428596" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
 </head>
+
 <body>
 
-<div id="phaserDiv"></div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="../index.html">Computational Thinking Lessons</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Math</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="../math/basketball-motion-analysis.html">Basketball Motion Analysis</a></li>
+                <li><a class="dropdown-item" href="../math/polygon-transformations.html">Polygon Transformations</a></li>
+                <li><a class="dropdown-item" href="../math/racial-bias-in-traffic-stops.html">Racial Bias in Traffic Stops</a></li>
+                <li><a class="dropdown-item" href="../math/rational-football-league.html">Rational Football League</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Apps</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="../apps/polygonTransformer.html">Polygon Transformer</a></li>
+                <li><a class="dropdown-item" href="../apps/rationalFootballLeague.html">Rational Football League</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <br>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="phaser.min.js"></script>
-<script src="slick-ui.min.js"></script>
-<script src="solarSystems.js"></script>
+    <div class="container">
+
+      <div id="phaserDiv"></div>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="phaser.min.js"></script>
+      <script src="slick-ui.min.js"></script>
+      <script src="solarSystems.js"></script>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
+
 </html>
