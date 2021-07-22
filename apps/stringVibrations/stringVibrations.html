@@ -1,215 +1,290 @@
 <!doctype html>
-<html>
+
+<html lang="en">
+
 <head>
-<title>String Vibrations</title>
-<meta charset="utf-8">
-<style>
-body{font-family: Arial, Helvetica, sans-serif;}
-table {border-collapse: collapse;}
-th, td{vertical-align: top;}
-.stringBreak{line-height: 215%;}
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-input[type='number'] {
-    -moz-appearance:textfield;
-}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-}
+    <title>Digital Guitar Simulator</title>
+    <meta name="description" content="Web app powering Guitars and String Vibrations lesson">
+    <meta name="author" content="Eli Sheldon">
 
-a {
-    text-decoration: none;
-	color: black;
-}
+    <meta property="og:title" content="Digital Guitar Simulator">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ctlessons.org/apps/stringVibrations/stringVibrations.html">
+    <meta property="og:description" content="Web app powering Guitars and String Vibrations lesson">
+    <meta property="og:image" content="../../images/guitar_sim.png">
 
-</style>
-<!--
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+	<link rel="manifest" href="../../site.webmanifest">
+	<link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
 
-  ga('create', 'UA-87815122-1', 'auto');
-  ga('send', 'pageview');
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.0.2/dist/litera/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
-</script>-->
+
+	<style>
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		table {
+			border-collapse: collapse;
+		}
+
+		th,
+		td {
+			vertical-align: top;
+		}
+
+		.stringBreak {
+			line-height: 215%;
+		}
+
+		input::-webkit-outer-spin-button,
+		input::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+
+		input[type='number'] {
+			-moz-appearance: textfield;
+		}
+
+		input::-webkit-outer-spin-button,
+		input::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+		}
+
+		a {
+			text-decoration: none;
+			color: black;
+		}
+	</style>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-NM0WRN8VNF"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-NM0WRN8VNF');
+	</script>
+
+    <script data-ad-client="ca-pub-2264946088428596" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
 </head>
+
 <body>
 
-<table>
-	<tr>
-		<td>
-			<canvas id="stringCanvas" width="1000" height="200" style="border:0px"></canvas><br>
-			<img src="ruler.png" width="1000"></img><br>
-		</td>
-		<td>
-			<span style="color:#39CCCC">L<sub>1</sub>: <input id="length1" type="number" value="0.648" style='width:4em;color:#39CCCC' oninput="drawStrings()" min="0" max=".648"> meters<br class="stringBreak"></span>
-			<span style="color:#FF851B">L<sub>2</sub>: <input id="length2" type="number" value="0.648" style='width:4em;color:#FF851B' oninput="drawStrings()" min="0" max=".648"> meters<br class="stringBreak"></span>
-			<span style="color:#2ECC40">L<sub>3</sub>: <input id="length3" type="number" value="0.648" style='width:4em;color:#2ECC40' oninput="drawStrings()" min="0" max=".648"> meters<br class="stringBreak"></span>
-			<span style="color:#AAAAAA">L<sub>4</sub>: <input id="length4" type="number" value="0.648" style='width:4em;color:#AAAAAA' oninput="drawStrings()" min="0" max=".648"> meters<br class="stringBreak"></span>
-			<span style="color:#001f3f">L<sub>5</sub>: <input id="length5" type="number" value="0.648" style='width:4em;color:#001f3f' oninput="drawStrings()" min="0" max=".648"> meters<br class="stringBreak"></span>
-			<span style="color:#B10DC9">L<sub>6</sub>: <input id="length6" type="number" value="0.648" style='width:4em;color:#B10DC9' oninput="drawStrings()" min="0" max=".648"> meters<br class="stringBreak"></span>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="saveChord" onclick="saveChord();">Save chord</button><br class="stringBreak">
-			&nbsp;&nbsp;&nbsp;&nbsp;<button id="strum" onclick="strum();">Strum all strings</button>
-			
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<table>
-				<tr>
-					<td style="display:none;">
-						Wave speeds (constant)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-						<span style="color:#39CCCC">v<sub>1</sub>: 96.11 m/s<br></span>
-						<span style="color:#FF851B">v<sub>2</sub>: 130.23 m/s<br></span>
-						<span style="color:#2ECC40">v<sub>3</sub>: 170.93 m/s<br></span>
-						<span style="color:#AAAAAA">v<sub>4</sub>: 227.90 m/s<br></span>
-						<span style="color:#001f3f">v<sub>5</sub>: 299.36 m/s<br></span>
-						<span style="color:#B10DC9">v<sub>6</sub>: 399.15 m/s</span>
-					</td>
-					<td>
-						Frequencies (calculated) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-						<span style="color:#39CCCC">f<sub>1</sub>: <b><span id="f1"></span></b><br></span>
-						<span style="color:#FF851B">f<sub>2</sub>: <b><span id="f2"></span></b><br></span>
-						<span style="color:#2ECC40">f<sub>3</sub>: <b><span id="f3"></span></b><br></span>
-						<span style="color:#AAAAAA">f<sub>4</sub>: <b><span id="f4"></span></b><br></span>
-						<span style="color:#001f3f">f<sub>5</sub>: <b><span id="f5"></span></b><br></span>
-						<span style="color:#B10DC9">f<sub>6</sub>: <b><span id="f6"></span></b></span>
-					</td>
-					<td style="line-height: 128%;">
-					<div id="standard">
-					<a href="javascript:cycleChord('G')"> <img src="left.png" width="16"> </a> Standard tuning <a href="javascript:cycleChord('Am')"> <img src="right.png" width="16"> </a><br>
-						<span style="color:#39CCCC">E: 82.41 Hz<br></span>
-						<span style="color:#FF851B">A: 110.00 Hz<br></span>
-						<span style="color:#2ECC40">D: 146.83 Hz<br></span>
-						<span style="color:#AAAAAA">G: 196.00 Hz<br></span>
-						<span style="color:#001f3f">B: 246.94 Hz<br></span>
-						<span style="color:#B10DC9">E: 329.63 Hz</span>
-					</div>
-					<div id="Am" style="display:none;">
-						<a href="javascript:cycleChord('standard')"> <img src="left.png" width="16"> </a> Am chord <a href="javascript:cycleChord('C')"> <img src="right.png" width="16"> </a><br>
-						<span style="color:#39CCCC">E: 82.41 Hz<br></span>
-						<span style="color:#FF851B">A: 110.00 Hz<br></span>
-						<span style="color:#2ECC40">E: 164.81 Hz<br></span>
-						<span style="color:#AAAAAA">A: 220.00 Hz<br></span>
-						<span style="color:#001f3f">C: 261.63 Hz<br></span>
-						<span style="color:#B10DC9">E: 329.63 Hz</span>
-					</div>
-					<div id="C" style="display:none;">
-						<a href="javascript:cycleChord('Am')"> <img src="left.png" width="16"> </a> C chord <a href="javascript:cycleChord('Dm')"> <img src="right.png" width="16"> </a><br>
-						<span style="color:#39CCCC">G: 98.00 Hz<br></span>
-						<span style="color:#FF851B">C: 130.81 Hz<br></span>
-						<span style="color:#2ECC40">E: 164.81 Hz<br></span>
-						<span style="color:#AAAAAA">G: 196.00 Hz<br></span>
-						<span style="color:#001f3f">C: 261.63 Hz<br></span>
-						<span style="color:#B10DC9">E: 329.63 Hz</span>
-					</div>
-					<div id="Dm" style="display:none;">
-						<a href="javascript:cycleChord('C')"> <img src="left.png" width="16"> </a> Dm chord <a href="javascript:cycleChord('E')"> <img src="right.png" width="16"> </a><br>
-						<span style="color:#39CCCC">F: 87.31 Hz<br></span>
-						<span style="color:#FF851B">A: 110.00 Hz<br></span>
-						<span style="color:#2ECC40">D: 146.83 Hz<br></span>
-						<span style="color:#AAAAAA">A: 220.00 Hz<br></span>
-						<span style="color:#001f3f">D: 293.66 Hz<br></span>
-						<span style="color:#B10DC9">F: 349.23 Hz</span>
-					</div>
-					<div id="E" style="display:none;">
-						<a href="javascript:cycleChord('Dm')"> <img src="left.png" width="16"> </a> E chord <a href="javascript:cycleChord('Em')"> <img src="right.png" width="16"> </a><br>
-						<span style="color:#39CCCC">E: 82.41 Hz<br></span>
-						<span style="color:#FF851B">B: 123.47 Hz<br></span>
-						<span style="color:#2ECC40">E: 164.81 Hz<br></span>
-						<span style="color:#AAAAAA">G#: 207.65 Hz<br></span>
-						<span style="color:#001f3f">B: 246.94 Hz<br></span>
-						<span style="color:#B10DC9">E: 329.63 Hz</span>
-					</div>
-					<div id="Em" style="display:none;">
-						<a href="javascript:cycleChord('E')"> <img src="left.png" width="16"> </a> Em chord <a href="javascript:cycleChord('F')"> <img src="right.png" width="16"> </a><br>
-						<span style="color:#39CCCC">E: 82.41 Hz<br></span>
-						<span style="color:#FF851B">B: 123.47 Hz<br></span>
-						<span style="color:#2ECC40">E: 164.81 Hz<br></span>
-						<span style="color:#AAAAAA">G: 196.00 Hz<br></span>
-						<span style="color:#001f3f">B: 246.94 Hz<br></span>
-						<span style="color:#B10DC9">E: 329.63 Hz</span>
-					</div>
-					<div id="F" style="display:none;">
-						<a href="javascript:cycleChord('Em')"> <img src="left.png" width="16"> </a> F chord <a href="javascript:cycleChord('G')"> <img src="right.png" width="16"> </a><br>
-						<span style="color:#39CCCC">F: 87.31 Hz<br></span>
-						<span style="color:#FF851B">C: 130.81 Hz<br></span>
-						<span style="color:#2ECC40">F: 174.61 Hz<br></span>
-						<span style="color:#AAAAAA">A: 220.00 Hz<br></span>
-						<span style="color:#001f3f">C: 261.63 Hz<br></span>
-						<span style="color:#B10DC9">F: 329.63 Hz</span>
-					</div>
-					<div id="G" style="display:none;">
-						<a href="javascript:cycleChord('F')"> <img src="left.png" width="16"> </a> G chord <a href="javascript:cycleChord('standard')"> <img src="right.png" width="16"> </a><br>
-						<span style="color:#39CCCC">G: 98.00 Hz<br></span>
-						<span style="color:#FF851B">B: 123.47 Hz<br></span>
-						<span style="color:#2ECC40">D: 146.83 Hz<br></span>
-						<span style="color:#AAAAAA">G: 196.00 Hz<br></span>
-						<span style="color:#001f3f">B: 246.94 Hz<br></span>
-						<span style="color:#B10DC9">G: 392.00 Hz</span>
-					</div>
-					</td>
-					<td>
-						
-					</td>
-				</tr>
-			</table>
-		</td>
-		<td>
-	</tr>
-	<tr>
-		<td id="chordButtons"><br>Saved chords: </td>
-	</tr>
-	<tr>
-		<td><br>Reference notes: 
-			<button onclick='Synth.play("acoustic",65.41,2);'>C<sub>2</sub></button>
-			<button onclick='Synth.play("acoustic",69.3,2);'>C#<sub>2</sub></button>
-			<button onclick='Synth.play("acoustic",73.42,2);'>D<sub>2</sub></button>
-			<button onclick='Synth.play("acoustic",77.78,2);'>D#<sub>2</sub></button>
-			<button onclick='Synth.play("acoustic",82.41,2);'>E<sub>2</sub></button>
-			<button onclick='Synth.play("acoustic",87.31,2);'>F<sub>2</sub></button>
-			<button onclick='Synth.play("acoustic",92.5,2);'>F#<sub>2</sub></button>
-			<button onclick='Synth.play("acoustic",98,2);'>G<sub>2</sub></button>
-			<button onclick='Synth.play("acoustic",103.83,2);'>G#<sub>2</sub></button>
-			<button onclick='Synth.play("acoustic",110,2);'>A<sub>2</sub></button>
-			<button onclick='Synth.play("acoustic",116.54,2);'>A#<sub>2</sub></button>
-			<button onclick='Synth.play("acoustic",123.47,2);'>B<sub>2</sub></button>
-			<button onclick='Synth.play("acoustic",130.81,2);'>C<sub>3</sub></button>
-			<button onclick='Synth.play("acoustic",138.59,2);'>C#<sub>3</sub></button>
-			<button onclick='Synth.play("acoustic",146.83,2);'>D<sub>3</sub></button>
-			<button onclick='Synth.play("acoustic",155.56,2);'>D#<sub>3</sub></button>
-			<button onclick='Synth.play("acoustic",164.81,2);'>E<sub>3</sub></button><br>
-			<button onclick='Synth.play("acoustic",174.61,2);'>F<sub>3</sub></button>
-			<button onclick='Synth.play("acoustic",185,2);'>F#<sub>3</sub></button>
-			<button onclick='Synth.play("acoustic",196,2);'>G<sub>3</sub></button>
-			<button onclick='Synth.play("acoustic",207.65,2);'>G#<sub>3</sub></button>
-			<button onclick='Synth.play("acoustic",220,2);'>A<sub>3</sub></button>
-			<button onclick='Synth.play("acoustic",233.08,2);'>A#<sub>3</sub></button>
-			<button onclick='Synth.play("acoustic",246.94,2);'>B<sub>3</sub></button>
-			<button onclick='Synth.play("acoustic",261.63,2);'>C<sub>4</sub></button>
-			<button onclick='Synth.play("acoustic",277.18,2);'>C#<sub>4</sub></button>
-			<button onclick='Synth.play("acoustic",293.66,2);'>D<sub>4</sub></button>
-			<button onclick='Synth.play("acoustic",311.13,2);'>D#<sub>4</sub></button>
-			<button onclick='Synth.play("acoustic",329.63,2);'>E<sub>4</sub></button>
-			<button onclick='Synth.play("acoustic",349.23,2);'>F<sub>4</sub></button>
-			<button onclick='Synth.play("acoustic",369.99,2);'>F#<sub>4</sub></button>
-			<button onclick='Synth.play("acoustic",392,2);'>G<sub>4</sub></button>
-			<button onclick='Synth.play("acoustic",415.3,2);'>G#<sub>4</sub></button>
-			<button onclick='Synth.play("acoustic",440,2);'>A<sub>4</sub></button>
-			<button onclick='Synth.play("acoustic",466.16,2);'>A#<sub>4</sub></button>
-			<button onclick='Synth.play("acoustic",493.88,2);'>B<sub>4</sub></button>
-			<button onclick='Synth.play("acoustic",523.25,2);'>C<sub>5</sub></button>
-		</td>
-	</tr>
-</table>
-<script src="audiosynth.js"></script>
-<script src="stringVibrations.js"></script>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="../index.html">Computational Thinking Lessons</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Math</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="../math/basketball-motion-analysis.html">Basketball Motion Analysis</a></li>
+                <li><a class="dropdown-item" href="../math/polygon-transformations.html">Polygon Transformations</a></li>
+                <li><a class="dropdown-item" href="../math/racial-bias-in-traffic-stops.html">Racial Bias in Traffic Stops</a></li>
+                <li><a class="dropdown-item" href="../math/rational-football-league.html">Rational Football League</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Apps</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="../apps/polygonTransformer.html">Polygon Transformer</a></li>
+                <li><a class="dropdown-item" href="../apps/rationalFootballLeague.html">Rational Football League</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <br>
+
+    <div class="container">
+
+		<table>
+		<tr>
+			<td>
+				<canvas id="stringCanvas" width="1000" height="200" style="border:0px"></canvas><br>
+				<img src="ruler.png" width="1000"></img><br>
+			</td>
+			<td>
+				<span style="color:#39CCCC">L<sub>1</sub>: <input id="length1" type="number" value="0.648" style='width:4em;color:#39CCCC' oninput="drawStrings()" min="0" max=".648"> meters<br class="stringBreak"></span>
+				<span style="color:#FF851B">L<sub>2</sub>: <input id="length2" type="number" value="0.648" style='width:4em;color:#FF851B' oninput="drawStrings()" min="0" max=".648"> meters<br class="stringBreak"></span>
+				<span style="color:#2ECC40">L<sub>3</sub>: <input id="length3" type="number" value="0.648" style='width:4em;color:#2ECC40' oninput="drawStrings()" min="0" max=".648"> meters<br class="stringBreak"></span>
+				<span style="color:#AAAAAA">L<sub>4</sub>: <input id="length4" type="number" value="0.648" style='width:4em;color:#AAAAAA' oninput="drawStrings()" min="0" max=".648"> meters<br class="stringBreak"></span>
+				<span style="color:#001f3f">L<sub>5</sub>: <input id="length5" type="number" value="0.648" style='width:4em;color:#001f3f' oninput="drawStrings()" min="0" max=".648"> meters<br class="stringBreak"></span>
+				<span style="color:#B10DC9">L<sub>6</sub>: <input id="length6" type="number" value="0.648" style='width:4em;color:#B10DC9' oninput="drawStrings()" min="0" max=".648"> meters<br class="stringBreak"></span>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="saveChord" onclick="saveChord();">Save chord</button><br class="stringBreak">
+				&nbsp;&nbsp;&nbsp;&nbsp;<button id="strum" onclick="strum();">Strum all strings</button>
+
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table>
+					<tr>
+						<td style="display:none;">
+							Wave speeds (constant)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+							<span style="color:#39CCCC">v<sub>1</sub>: 96.11 m/s<br></span>
+							<span style="color:#FF851B">v<sub>2</sub>: 130.23 m/s<br></span>
+							<span style="color:#2ECC40">v<sub>3</sub>: 170.93 m/s<br></span>
+							<span style="color:#AAAAAA">v<sub>4</sub>: 227.90 m/s<br></span>
+							<span style="color:#001f3f">v<sub>5</sub>: 299.36 m/s<br></span>
+							<span style="color:#B10DC9">v<sub>6</sub>: 399.15 m/s</span>
+						</td>
+						<td>
+							Frequencies (calculated) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+							<span style="color:#39CCCC">f<sub>1</sub>: <b><span id="f1"></span></b><br></span>
+							<span style="color:#FF851B">f<sub>2</sub>: <b><span id="f2"></span></b><br></span>
+							<span style="color:#2ECC40">f<sub>3</sub>: <b><span id="f3"></span></b><br></span>
+							<span style="color:#AAAAAA">f<sub>4</sub>: <b><span id="f4"></span></b><br></span>
+							<span style="color:#001f3f">f<sub>5</sub>: <b><span id="f5"></span></b><br></span>
+							<span style="color:#B10DC9">f<sub>6</sub>: <b><span id="f6"></span></b></span>
+						</td>
+						<td style="line-height: 128%;">
+						<div id="standard">
+						<a href="javascript:cycleChord('G')"> <img src="left.png" width="16"> </a> Standard tuning <a href="javascript:cycleChord('Am')"> <img src="right.png" width="16"> </a><br>
+							<span style="color:#39CCCC">E: 82.41 Hz<br></span>
+							<span style="color:#FF851B">A: 110.00 Hz<br></span>
+							<span style="color:#2ECC40">D: 146.83 Hz<br></span>
+							<span style="color:#AAAAAA">G: 196.00 Hz<br></span>
+							<span style="color:#001f3f">B: 246.94 Hz<br></span>
+							<span style="color:#B10DC9">E: 329.63 Hz</span>
+						</div>
+						<div id="Am" style="display:none;">
+							<a href="javascript:cycleChord('standard')"> <img src="left.png" width="16"> </a> Am chord <a href="javascript:cycleChord('C')"> <img src="right.png" width="16"> </a><br>
+							<span style="color:#39CCCC">E: 82.41 Hz<br></span>
+							<span style="color:#FF851B">A: 110.00 Hz<br></span>
+							<span style="color:#2ECC40">E: 164.81 Hz<br></span>
+							<span style="color:#AAAAAA">A: 220.00 Hz<br></span>
+							<span style="color:#001f3f">C: 261.63 Hz<br></span>
+							<span style="color:#B10DC9">E: 329.63 Hz</span>
+						</div>
+						<div id="C" style="display:none;">
+							<a href="javascript:cycleChord('Am')"> <img src="left.png" width="16"> </a> C chord <a href="javascript:cycleChord('Dm')"> <img src="right.png" width="16"> </a><br>
+							<span style="color:#39CCCC">G: 98.00 Hz<br></span>
+							<span style="color:#FF851B">C: 130.81 Hz<br></span>
+							<span style="color:#2ECC40">E: 164.81 Hz<br></span>
+							<span style="color:#AAAAAA">G: 196.00 Hz<br></span>
+							<span style="color:#001f3f">C: 261.63 Hz<br></span>
+							<span style="color:#B10DC9">E: 329.63 Hz</span>
+						</div>
+						<div id="Dm" style="display:none;">
+							<a href="javascript:cycleChord('C')"> <img src="left.png" width="16"> </a> Dm chord <a href="javascript:cycleChord('E')"> <img src="right.png" width="16"> </a><br>
+							<span style="color:#39CCCC">F: 87.31 Hz<br></span>
+							<span style="color:#FF851B">A: 110.00 Hz<br></span>
+							<span style="color:#2ECC40">D: 146.83 Hz<br></span>
+							<span style="color:#AAAAAA">A: 220.00 Hz<br></span>
+							<span style="color:#001f3f">D: 293.66 Hz<br></span>
+							<span style="color:#B10DC9">F: 349.23 Hz</span>
+						</div>
+						<div id="E" style="display:none;">
+							<a href="javascript:cycleChord('Dm')"> <img src="left.png" width="16"> </a> E chord <a href="javascript:cycleChord('Em')"> <img src="right.png" width="16"> </a><br>
+							<span style="color:#39CCCC">E: 82.41 Hz<br></span>
+							<span style="color:#FF851B">B: 123.47 Hz<br></span>
+							<span style="color:#2ECC40">E: 164.81 Hz<br></span>
+							<span style="color:#AAAAAA">G#: 207.65 Hz<br></span>
+							<span style="color:#001f3f">B: 246.94 Hz<br></span>
+							<span style="color:#B10DC9">E: 329.63 Hz</span>
+						</div>
+						<div id="Em" style="display:none;">
+							<a href="javascript:cycleChord('E')"> <img src="left.png" width="16"> </a> Em chord <a href="javascript:cycleChord('F')"> <img src="right.png" width="16"> </a><br>
+							<span style="color:#39CCCC">E: 82.41 Hz<br></span>
+							<span style="color:#FF851B">B: 123.47 Hz<br></span>
+							<span style="color:#2ECC40">E: 164.81 Hz<br></span>
+							<span style="color:#AAAAAA">G: 196.00 Hz<br></span>
+							<span style="color:#001f3f">B: 246.94 Hz<br></span>
+							<span style="color:#B10DC9">E: 329.63 Hz</span>
+						</div>
+						<div id="F" style="display:none;">
+							<a href="javascript:cycleChord('Em')"> <img src="left.png" width="16"> </a> F chord <a href="javascript:cycleChord('G')"> <img src="right.png" width="16"> </a><br>
+							<span style="color:#39CCCC">F: 87.31 Hz<br></span>
+							<span style="color:#FF851B">C: 130.81 Hz<br></span>
+							<span style="color:#2ECC40">F: 174.61 Hz<br></span>
+							<span style="color:#AAAAAA">A: 220.00 Hz<br></span>
+							<span style="color:#001f3f">C: 261.63 Hz<br></span>
+							<span style="color:#B10DC9">F: 329.63 Hz</span>
+						</div>
+						<div id="G" style="display:none;">
+							<a href="javascript:cycleChord('F')"> <img src="left.png" width="16"> </a> G chord <a href="javascript:cycleChord('standard')"> <img src="right.png" width="16"> </a><br>
+							<span style="color:#39CCCC">G: 98.00 Hz<br></span>
+							<span style="color:#FF851B">B: 123.47 Hz<br></span>
+							<span style="color:#2ECC40">D: 146.83 Hz<br></span>
+							<span style="color:#AAAAAA">G: 196.00 Hz<br></span>
+							<span style="color:#001f3f">B: 246.94 Hz<br></span>
+							<span style="color:#B10DC9">G: 392.00 Hz</span>
+						</div>
+						</td>
+						<td>
+
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td>
+		</tr>
+		<tr>
+			<td id="chordButtons"><br>Saved chords: </td>
+		</tr>
+		<tr>
+			<td><br>Reference notes:
+				<button onclick='Synth.play("acoustic",65.41,2);'>C<sub>2</sub></button>
+				<button onclick='Synth.play("acoustic",69.3,2);'>C#<sub>2</sub></button>
+				<button onclick='Synth.play("acoustic",73.42,2);'>D<sub>2</sub></button>
+				<button onclick='Synth.play("acoustic",77.78,2);'>D#<sub>2</sub></button>
+				<button onclick='Synth.play("acoustic",82.41,2);'>E<sub>2</sub></button>
+				<button onclick='Synth.play("acoustic",87.31,2);'>F<sub>2</sub></button>
+				<button onclick='Synth.play("acoustic",92.5,2);'>F#<sub>2</sub></button>
+				<button onclick='Synth.play("acoustic",98,2);'>G<sub>2</sub></button>
+				<button onclick='Synth.play("acoustic",103.83,2);'>G#<sub>2</sub></button>
+				<button onclick='Synth.play("acoustic",110,2);'>A<sub>2</sub></button>
+				<button onclick='Synth.play("acoustic",116.54,2);'>A#<sub>2</sub></button>
+				<button onclick='Synth.play("acoustic",123.47,2);'>B<sub>2</sub></button>
+				<button onclick='Synth.play("acoustic",130.81,2);'>C<sub>3</sub></button>
+				<button onclick='Synth.play("acoustic",138.59,2);'>C#<sub>3</sub></button>
+				<button onclick='Synth.play("acoustic",146.83,2);'>D<sub>3</sub></button>
+				<button onclick='Synth.play("acoustic",155.56,2);'>D#<sub>3</sub></button>
+				<button onclick='Synth.play("acoustic",164.81,2);'>E<sub>3</sub></button><br>
+				<button onclick='Synth.play("acoustic",174.61,2);'>F<sub>3</sub></button>
+				<button onclick='Synth.play("acoustic",185,2);'>F#<sub>3</sub></button>
+				<button onclick='Synth.play("acoustic",196,2);'>G<sub>3</sub></button>
+				<button onclick='Synth.play("acoustic",207.65,2);'>G#<sub>3</sub></button>
+				<button onclick='Synth.play("acoustic",220,2);'>A<sub>3</sub></button>
+				<button onclick='Synth.play("acoustic",233.08,2);'>A#<sub>3</sub></button>
+				<button onclick='Synth.play("acoustic",246.94,2);'>B<sub>3</sub></button>
+				<button onclick='Synth.play("acoustic",261.63,2);'>C<sub>4</sub></button>
+				<button onclick='Synth.play("acoustic",277.18,2);'>C#<sub>4</sub></button>
+				<button onclick='Synth.play("acoustic",293.66,2);'>D<sub>4</sub></button>
+				<button onclick='Synth.play("acoustic",311.13,2);'>D#<sub>4</sub></button>
+				<button onclick='Synth.play("acoustic",329.63,2);'>E<sub>4</sub></button>
+				<button onclick='Synth.play("acoustic",349.23,2);'>F<sub>4</sub></button>
+				<button onclick='Synth.play("acoustic",369.99,2);'>F#<sub>4</sub></button>
+				<button onclick='Synth.play("acoustic",392,2);'>G<sub>4</sub></button>
+				<button onclick='Synth.play("acoustic",415.3,2);'>G#<sub>4</sub></button>
+				<button onclick='Synth.play("acoustic",440,2);'>A<sub>4</sub></button>
+				<button onclick='Synth.play("acoustic",466.16,2);'>A#<sub>4</sub></button>
+				<button onclick='Synth.play("acoustic",493.88,2);'>B<sub>4</sub></button>
+				<button onclick='Synth.play("acoustic",523.25,2);'>C<sub>5</sub></button>
+			</td>
+		</tr>
+	</table>
+
+    </div>
+	<script src="audiosynth.js"></script>
+	<script src="stringVibrations.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
+
 </html>
