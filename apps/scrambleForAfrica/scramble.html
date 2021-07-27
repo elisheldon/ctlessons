@@ -26,8 +26,10 @@
 
 	<link href="https://cdn.jsdelivr.net/npm/bootswatch@5.0.2/dist/litera/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 	<style>
-		.reset {
-			all: revert;
+		tbody, td, tfoot, th, thead, tr {
+    		border-color: inherit;
+    		border-style: inherit;
+    		border-width: 2px;
 		}
 
 		#mapTable tr {
@@ -80,6 +82,10 @@
 			border: 1px solid black;
 			padding: 3px 3px;
 			display: inline-block;
+		}
+
+		.tooltip {
+			opacity: 100;
 		}
 
 		body {
