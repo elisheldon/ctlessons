@@ -26,46 +26,46 @@
 
 	<link href="https://cdn.jsdelivr.net/npm/bootswatch@5.0.2/dist/litera/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 	<style>
-		tbody, td, tfoot, th, thead, tr {
+		.game tbody, .game td, .game tfoot, .game th, .game thead, .game tr {
     		border-color: inherit;
     		border-style: inherit;
     		border-width: 2px;
 		}
 
-		#mapTable tr {
+		.game #mapTable tr {
 			height: 36px;
 		}
 
-		#mapTable td {
+		.game #mapTable td {
 			width: 36px;
 		}
 
-		#mapTableTutorial tr {
+		.game #mapTableTutorial tr {
 			height: 36px;
 		}
 
-		#mapTableTutorial td {
+		.game #mapTableTutorial td {
 			width: 36px;
 		}
 
-		.africaMapSquare {
+		.game .africaMapSquare {
 			position: relative;
 			vertical-align: middle;
 			text-align: center
 		}
 
-		.tooltip:hover {
+		.game .tooltip:hover {
 			outline: 3px solid black;
 		}
 
-		.africaMapSquarePic {
+		.game .africaMapSquarePic {
 			display: block;
 			position: absolute;
 			z-index: 1;
 			top: 0px
 		}
 
-		.africaMapResourcePic {
+		.game .africaMapResourcePic {
 			display: block;
 			position: absolute;
 			z-index: 2;
@@ -73,24 +73,28 @@
 			left: 9px
 		}
 
-		.claimable {
+		.game .claimable {
 			background-image: url('images/fade2.gif');
 		}
 
-		.button {
+		.game .button {
 			text-align: center;
 			border: 1px solid black;
 			padding: 3px 3px;
 			display: inline-block;
 		}
 
-		.tooltip {
+		.game .tooltip {
 			opacity: 100;
 			display: table-cell;
 		}
 
-		body {
+		.game body {
 			font-family: Arial, Helvetica, sans-serif
+		}
+
+		.game h2, h3 {
+			font-size: revert;
 		}
 	</style>
 	<link rel="stylesheet" type="text/css" href="tt/css/tooltipster.bundle.min.css" />
@@ -184,7 +188,7 @@
 		</div>
 	</nav>
 	<br>
-    <div class="container reset">
+    <div class="container game">
 		<div id="introDivs">
 			<div id="welcome">
 				<h1>The Scramble for Africa</h1>
