@@ -99,19 +99,7 @@ function startFunction(){
 function moveEyes(e){
 	eyeX = 200+Math.ceil((e.clientX-1080)/50);
 	eyeY = 250+Math.ceil((e.clientY-300)/40);
-	//if(eyeX<181){eyeX=181;} //prevent eye from escaping socket #gross
-	//if(eyeY>265){eyeY=265;}
 	drawMovingEyes(movingEyeColor,eyeX,eyeY);
-	//window.requestAnimationFrame(function(){drawMovingEyes(eyeShape,eyeColor,eyeSize,200);});
-	//alert(200+Math.ceil((event.screenX-250)/25));
-}
-
-function drawMovingEyesOld(eyeShape,eyeColor,eyeSize,eyeXin){ //this doesn't run right now
-	eyeXin = eyeXin + 1;
-	//eyeX = 200+Math.ceil(10*Math.sin(eyeXin/10));
-	eyeX = 980+Math.ceil((e.screenX-1030)/25);
-	drawEyes(eyeShape,eyeColor,eyeSize,eyeX);
-	window.requestAnimationFrame(function(){drawMovingEyes(eyeShape,eyeColor,eyeSize,eyeXin)});
 }
 
 function drawFace(){
@@ -704,13 +692,6 @@ function shadeColor2(color, percent) {
     return "#"+(0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+(Math.round((t-B)*p)+B)).toString(16).slice(1);
 }
 
-//document.getElementById('drawFaceButton').onclick=function() {drawFace()};
-//document.getElementById('toggleInputPhenotype').onclick=function() {$("#inputPhenotype").toggle()};
-//<button id="toggleInputPhenotype">Toggle input phenotype</button> from HTML
-//document.getElementById('moveEyesButton').onclick=function() {moveEyes()};
-//http://www.victoriakirst.com/beziertool/
-
-
 //INTRO
 document.getElementById('showSkinTone').onclick=function() {
 	playerName = document.getElementById("playerNameIn").value;
@@ -924,10 +905,8 @@ function nextQ(ti){
 	}
 	else{
 		var qType = Math.ceil(Math.random()*2); // 1 or 2
-		//var qType = 2; //force a question type for testing
 		switch (qType){
 			case 1: fillInSquare(nextBaby,nextBabyG,crossBaby,crossBabyG,nextBabyGenome,crossBabyG.genome,newBabyG,ti); break;
-			//case 2: fillInSquare(nextBaby,nextBabyG,crossBaby,crossBabyG,nextBabyGenome,crossBabyG.genome,newBabyG,ti); break;
 			case 2: probTest(nextBaby,nextBabyG,crossBaby,crossBabyG,nextBabyGenome,crossBabyG.genome,newBabyG,ti); break;
 		}
 	}
@@ -990,7 +969,7 @@ function probTest(baby1,baby1G,baby2,baby2G,g1,g2,newBabyG,ti){
 			if(phenoProbGuess == phenoProbYes){scoreThisTrait += 16;}
 
 			score += scoreThisTrait;
-			scoreDiv.innerHTML = "Your score is " + String(score) + ". <a href='javascript:submitScoreNow();'>Quit and submit your score now.</a>";
+			scoreDiv.innerHTML = "Your score is " + String(score) + ".";
 
 			if(scoreThisTrait == 16){
 				drawThisTrait[ti] = true;
@@ -1045,7 +1024,7 @@ function probTest(baby1,baby1G,baby2,baby2G,g1,g2,newBabyG,ti){
 			if(phenoProbGuess == phenoProbYes){scoreThisTrait += 4;}
 
 			score += scoreThisTrait;
-			scoreDiv.innerHTML = "Your score is " + String(score) + ". <a href='javascript:submitScoreNow();'>Quit and submit your score now.</a>";
+			scoreDiv.innerHTML = "Your score is " + String(score) + ".";
 
 			if(scoreThisTrait == 4){
 				drawThisTrait[ti] = true;
@@ -1145,7 +1124,7 @@ function fillInSquare(baby1,baby1G,baby2,baby2G,g1,g2,newBabyG,ti){
 			if(traitT16 == traitT16in){scoreThisTrait +=1;}
 
 			score += scoreThisTrait;
-			scoreDiv.innerHTML = "Your score is " + String(score) + ". <a href='javascript:submitScoreNow();'>Quit and submit your score now.</a>";
+			scoreDiv.innerHTML = "Your score is " + String(score) + ".";
 
 			if(scoreThisTrait == 16){
 				drawThisTrait[ti] = true;
@@ -1190,7 +1169,7 @@ function fillInSquare(baby1,baby1G,baby2,baby2G,g1,g2,newBabyG,ti){
 			if(traitBR == traitBRin){scoreThisTrait += 1;}
 
 			score += scoreThisTrait;
-			scoreDiv.innerHTML = "Your score is " + String(score) + ". <a href='javascript:submitScoreNow();'>Quit and submit your score now.</a>";
+			scoreDiv.innerHTML = "Your score is " + String(score) + ".";
 
 			if(scoreThisTrait == 4){
 				drawThisTrait[ti] = true;
@@ -1289,71 +1268,10 @@ function afterAllCrossings(baby1,baby1G,baby2,baby2G,newBaby,newBabyG){
 	afterCrossIntro.innerHTML = "Congratulations! You've finished crossing your final two babies and have created a new fifth and final generation baby. Your final score is " + String(score) + ".<br> <br>"
 
 	$("#scoreDiv").hide();
-
-	submitHighScore();
-}
-
-function submitScoreNow(){
-	$("#main").hide();
-	$("#afterCross").hide();
-	$("#scoreDiv").hide();
-	submitHighScore();
-	window.setTimeout(showLeaderboard,500);
-}
-
-function submitHighScore(){
-	var hs = document.createElement("img"); //from http://stackoverflow.com/questions/247483/http-get-request-in-javascript
-
-	var s="iuuq;00esfbnmp/dpn0mc0tSVXww5Vz17oi5J8PDiVIR9nljEYLpkFLJP5C176YDIR0bee0"; m=""; for (i=0; i<s.length; i++) {if(s.charCodeAt(i) == 28){m+= '&';} else if (s.charCodeAt(i) == 23) {m+= '!';} else {m+=String.fromCharCode(s.charCodeAt(i)-1);}}
-
-	hs.src = m + playerName + "/" + String(score);
-}
-
-document.getElementById('goToScores').onclick = function(){
-	showLeaderboard();
-}
-
-function showLeaderboard(){
-	$("#afterCross").hide();
-	$("#leaderboardDiv").show();
-	$("#leaderboardBtns").show();
-	$("#scoreDiv").hide();
-	loadXMLDoc();
-
-	//leaderboard code from http://www.w3schools.com/xml/ajax_applications.asp
-	function loadXMLDoc() {
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				populateLeaderboard(this);
-			}
-		};
-		xmlhttp.open("GET", "http://dreamlo.com/lb/582216b38af60307688d2227/xml/20", true);
-		xmlhttp.send();
-	}
-
-	function populateLeaderboard(xml) {
-		var i;
-		var xmlDoc = xml.responseXML;
-		var table="<table style='border: 1px solid black;'><tr style='border: 1px solid black; border-collapse: collapse;'><th  style='border: 1px solid black; border-collapse: collapse;'>Name</th><th  style='border: 1px solid black; border-collapse: collapse;'>Score</th></tr>";
-		var x = xmlDoc.getElementsByTagName("entry");
-		for (i = 0; i <x.length; i++) {
-			table += "<tr style='border: 1px solid black; border-collapse: collapse;'><td  style='border: 1px solid black; border-collapse: collapse;'>" +
-			x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue +
-			"</td><td  style='border: 1px solid black; border-collapse: collapse;'>" +
-			x[i].getElementsByTagName("score")[0].childNodes[0].nodeValue +
-			"</td></tr>";
-		}
-		document.getElementById("leaderboardDiv").innerHTML = "<h1>BabyMaker Leaderboard</h1> Your score was " + score +".<br><br> "+table+"</table> <br>";
-	}
 }
 
 document.getElementById('startOver').onclick=function(){
 	location.reload();
-}
-
-document.getElementById('resubmitScore').onclick=function(){
-	submitScoreNow();
 }
 
 document.getElementById('nextGen').onclick=function(){
