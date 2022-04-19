@@ -247,7 +247,7 @@ function skipTurn(){
 function fillTable(){
 	var africaMapTableHtml = '<table id="mapTable" border="1" cellspacing="0" cellpadding="0" style="width:600px"><tr>'
 	for(i=1;i<=256;i++){
-		var fileName = "images/map_slices/africa_" + i.toString() + ".gif";
+		var fileName = "images/map_slices/africa_" + i.toString() + ".png";
 		africaMapTableHtml += '<td class="africaMapSquare" id="africaMapSquare' + i + '"><img class="africaMapSquarePic" id="africaMapSquarePic'  + i + '" src="' + fileName + '" width="36px"><span class="africaMapSquareNum">'+i+'</span></td>';
 		if(i%16==0){ //if we need to start a new row
 			africaMapTableHtml += '</tr><tr>';
@@ -1013,7 +1013,7 @@ function fillTableTutorial(){
 	var africaMapTableTutorialHtml = '<table id="mapTableTutorial" border="1" cellspacing="0" cellpadding="0" style="width:112px"><tr>'
 	tutorialSquares = [0,256, 191, 192, 256, 207, 208, 222, 223, 224, 238, 239, 240];
 	for(i=1;i<=12;i++){
-		var fileName = "images/map_slices/africa_" + tutorialSquares[i].toString() + ".gif";
+		var fileName = "images/map_slices/africa_" + tutorialSquares[i].toString() + ".png";
 		africaMapTableTutorialHtml += '<td class="africaMapSquare" id="africaMapSquareTutorial' + i + '"><img class="africaMapSquarePic" id="africaMapSquareTutorialPic'  + i + '" src="' + fileName + '" width="36px"></td>';
 		if(i%3==0){ //if we need to start a new row
 			africaMapTableTutorialHtml += '</tr><tr>';
