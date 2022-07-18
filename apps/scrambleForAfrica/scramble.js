@@ -902,22 +902,22 @@ function calculateScore(team){
 	}
 	switch(team){ //calculated experimentally
 		case 2: //france
-			score = Math.ceil(score*.94);
+			score = Math.ceil(score*1.142);
 			break;
 		case 3: //belgium
-			score = Math.ceil(score*2.32);
+			score = Math.ceil(score*2.869);
 			break;
 		case 4: //spain
-			score = Math.ceil(score*2.26);
+			score = Math.ceil(score*1.702);
 			break;
 		case 5: //germany
-			score = Math.ceil(score*1.38);
+			score = Math.ceil(score*1.795);
 			break;
 		case 6: //italy
-			score = Math.ceil(score*1.75);
+			score = Math.ceil(score*2.105);
 			break;
 		case 7: //portugal
-			score = Math.ceil(score*2.01);
+			score = Math.ceil(score*2.705);
 			break;
 	}
 	return score;
