@@ -2,17 +2,6 @@
 //physics reference from http://hyperphysics.phy-astr.gsu.edu/hbase/Waves/string.html
 //notes reference from https://pages.mtu.edu/~suits/notefreqs.html
 
-
-    document.addEventListener('DOMContentLoaded', function () {
-        var percentage = document.querySelector('.js_slider');
-
-        lory(percentage, {
-            infinite: 1
-        });
-    });
-
-
-
 var c=document.getElementById("stringCanvas");
 var ctx=c.getContext("2d");
 
@@ -100,7 +89,7 @@ function strum(){
 }
 
 c.addEventListener('click', (e) => {
-	var y = e.clientY;
+	var y = e.clientY - 75;
     if(y<39){playString(1);}
 	else if(y<74){playString(2);}
 	else if(y<110){playString(3);}
