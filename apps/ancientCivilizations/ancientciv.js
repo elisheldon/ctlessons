@@ -1590,8 +1590,10 @@ function capitalizeFirstLetter(string) { //from http://stackoverflow.com/questio
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+
 function drawResource(resource, num, size, imgclass){
 	num = num || 1;
+	if(num <= 0){return "";}
 	size = size || 16;
 	imgclass = imgclass || "";
 	var imgString = "<img src='images/resources/" + resource + ".gif' height='" + size + "' title='" + resource + "' class='" + imgclass + "'> ";
