@@ -519,6 +519,11 @@ function updateState(){
 		nextUp = snapshot.val().nextUp;
 		turnHistory = snapshot.val().turnHistory;
 		paused = snapshot.val().paused;
+		if(nextUp >= numTeams){ //if the nextUp is greater than the number of teams (bug that is occasionally hit somehow)
+			nextUp = 1; //reset nextUp to 1 (Britain)
+			year = years[years.indexOf(year)+1]; //go to the next year
+			// don't need to update state, since Britain's next end turn will do so and everyone else will have applied this data fix locally
+		}
 		if(document.getElementById("colorBy").value=="claim"){ //recolor squares if colored by claim
 			colorSquaresClaim();
 		}
