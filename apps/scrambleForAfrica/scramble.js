@@ -231,7 +231,7 @@ function skipTurn(){
 	endGame();
 	}
 	else{
-		if(nextUp==numTeams){ //wrap last team back to 0, increase year
+		if(nextUp>=numTeams){ //wrap last team back to 0, increase year
 			nextUp=0;
 			year = years[years.indexOf(year)+1];
 		}; 
