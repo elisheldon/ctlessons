@@ -1643,15 +1643,20 @@ function deleteMyCiv(){
 		if(typeof player.trades == "undefined"){finishDeletion();}
 		else{
 			var tradesLength = Object.keys(player.trades).length;
-			$.each(player.trades, function(tradekey,tradestatus){ //cleanup now invalid trade
-				db.ref('trades/'+tradekey).once('value').then(function(snapshot){
-					var trade = snapshot.val();
-					updates['users/'+trade.receiverUid+'/trades/'+tradekey] = null;
-					updates['users/'+trade.creatorUid+'/trades/'+tradekey] = null;
-					updates['trades/'+tradekey] = null;
-					tradesLength--;
-					if(tradesLength==0){finishDeletion();}
-				})
+			$.each(player.trades, function(tradekey,tradestatus){ //cleanup now invalid trade, if it exists in trades table
+				try{
+					db.ref('trades/'+tradekey).once('value').then(function(snapshot){
+						var trade = snapshot.val();
+						updates['users/'+trade.receiverUid+'/trades/'+tradekey] = null;
+						updates['users/'+trade.creatorUid+'/trades/'+tradekey] = null;
+						updates['trades/'+tradekey] = null;
+					});
+				}
+				catch(err){
+					console.log("Error deleting trade, moving on.")
+				}
+				tradesLength--;
+				if(tradesLength==0){finishDeletion();}
 			})
 		}
 	}
